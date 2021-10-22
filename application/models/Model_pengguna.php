@@ -9,9 +9,8 @@ class Model_pengguna extends CI_Model {
     }
     
     function get() {
-        $this->db->select("users.*,divisi.divisiNama");
+        $this->db->select("users.*");
         $this->db->from("users");
-        $this->db->join('divisi','divisi.divisiId=users.userDivisi');
         return $this->db->get()->result();
     }
 
@@ -64,12 +63,13 @@ class Model_pengguna extends CI_Model {
     function changePassword($old,$new) {
         $id = $this->session->userdata("userId");
         $cekuser = $this->db->get_where('users',array('id'=>$id))->row();
+
         if(!empty($cekuser)) {
-            if(password_verify($old,$cekuser->userPassword)) {
+            if(password_verify($old,$cekuser->password)) {
                 $update = array(
                     "password"        => password_hash($new,PASSWORD_DEFAULT)
                 );
-                $this->db->where('email',$id);
+                $this->db->where('id',$id);
                 $this->db->update('users',$update);
                 return true;
             }else {

@@ -45,16 +45,24 @@ class Dataupload extends CI_Controller {
 	public function json_datauplaod(){
         $id = $this->session->userdata('userId');
         $this->load->library('datatables');
-        $this->datatables->select('bukti_tayangs.*');
+        $this->datatables->select('bukti_tayangs.*,formulir_bukti_tayangs.kolom,formulir_bukti_tayangs.tipe');
         $this->datatables->from('bukti_tayangs');
         $this->datatables->join('formulir_bukti_tayangs','formulir_bukti_tayangs.id=bukti_tayangs.formula_id');
         $this->datatables->where(array('bukti_tayangs.user_id'=>$id));
         $this->datatables->add_column('created_at',function($row){
             return date('Y-m-d H:i:s',strtotime($row['created_at']));
         });
+        $this->datatables->add_column('value',function($row){
+            if($row['tipe']=='file') {
+                $val = $row['value'];
+                return "<a target='_blank' href='".base_url()."berkas/buktitayang/".$val."'>Lihat Dokumen</a>";
+            }else {
+                return $row['value'];
+            }
+        });
         $this->datatables->add_column('action',function($row){
             $button = "<div class='btn-group'>";
-            $button .= '<a href="'.base_url()."dataupload/hapus/".$row['id'].'" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>';
+            $button .= '<a onclick="return confirm(\'Hapus Data?\')" href="'.base_url()."dataupload/hapus/".$row['id'].'" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>';
             $button .= "</div>";
             return $button;
         });
@@ -160,6 +168,22 @@ class Dataupload extends CI_Controller {
 
     public function checkiffile($id) {
         return $this->db->get_where('formulir_bukti_tayangs',array('id' => $id))->row();
+    }
+
+    public function hapus() {
+        $this->db->where('id',$this->uri->segment(3));
+        if($this->db->delete('bukti_tayangs')) {
+            $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Data berhasil disimpan.
+          </div>');
+        }else {
+            $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Fail!</strong> Data gagal disimpan.
+          </div>');
+        }
+        redirect(base_url().'dataupload');
     }
 
 }

@@ -318,7 +318,26 @@
                 <div id="menu2" class="tab-pane fade">
                     Data Pengiriman Bukti Tayang
                     <div class="table-responsive">
-                        <table class="table table-bordered"></table>
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>No</th>
+                                <th>Kolom</th>
+                                <th>Value</th>
+                            </tr>
+                            <?php foreach ($bukti as $k =>$b){ ?>
+                                <tr>
+                                    <td><?=$k+1?></td>
+                                    <td><?=$b->kolom?></td>
+                                    <td>
+                                        <?php if($b->tipe=='file'){ ?>
+                                            <?=$b->value?>
+                                        <?php }else { ?>
+                                            <?=$b->value?>
+                                        <?php }?>
+                                    </td>
+                                </tr>
+                            <?php }?>
+                        </table>
                     </div>
                 </div>
             </div>

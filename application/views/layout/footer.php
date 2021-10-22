@@ -6,7 +6,7 @@
     <div class="pull-right hidden-xs">
 
     </div>
-    <strong>Copyright &copy; 2019-<?=date('Y')?></strong>. All rights
+    <strong>Copyright &copy; 2021-<?=date('Y')?></strong>. All rights
     reserved.
   </footer>
 

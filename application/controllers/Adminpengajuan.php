@@ -30,6 +30,7 @@ class Adminpengajuan extends CI_Controller {
       $pengajuan = $this->db->get_where('proposals', array('id' => $this->uri->segment(3)))->row();
 
       $ceklis = [];
+      $bukti = [];
 
       if(!empty($pengajuan)) {
           $qPersyaratan = $this->db->get_where('tipemedia_kriterias', array('tipemedia_id'=>$pengajuan->tipemedia_id))->result();
@@ -49,6 +50,11 @@ class Adminpengajuan extends CI_Controller {
                   $ceklis[] = $ins;
               }
           }
+          $this->db->select('bukti_tayangs.*,formulir_bukti_tayangs.kolom,formulir_bukti_tayangs.tipe');
+          $this->db->from('bukti_tayangs');
+          $this->db->join('formulir_bukti_tayangs','formulir_bukti_tayangs.id=bukti_tayangs.formula_id');
+          $this->db->where(array('bukti_tayangs.proposal_id'=>$pengajuan->id));
+          $bukti = $this->db->get()->result();
       }
 
       $data = array(
@@ -58,6 +64,7 @@ class Adminpengajuan extends CI_Controller {
           'tipemedia'      => $this->db->get('tipe_media')->result(),
           'proposal' => $pengajuan,
           'ceklis' => $ceklis,
+          'bukti' => $bukti,
       );
       $this->load->view('layout/template',$data);
   }
@@ -141,6 +148,16 @@ class Adminpengajuan extends CI_Controller {
         <strong>Success!</strong> Berhasil update data.
       </div>');
       redirect(base_url()."adminpengajuan/form/".$this->uri->segment(3));
+  }
+
+  public function delete() {
+    $this->db->where('id',$this->uri->segment(3));
+    $this->db->update('proposals',array('id'=>$id));
+    $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Berhasil update data.
+      </div>');
+      redirect(base_url()."adminpengajuan");
   }
 
 }

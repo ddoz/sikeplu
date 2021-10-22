@@ -5,7 +5,7 @@ class Pengguna extends CI_Controller {
 
 	public function __construct() {
     parent::__construct();
-    if(empty($this->session->userdata('userId')) || $this->session->userdata('userDivisiId')!='1') {
+    if(empty($this->session->userdata('userId')) || $this->session->userdata('userLevel')!='1') {
 			redirect(base_url());
 		}
     $this->load->model(array('Model_pengguna','Model_divisi','Model_notifikasi'));
@@ -29,28 +29,22 @@ class Pengguna extends CI_Controller {
             'page'      => 'pengguna/form',
             'link'      => 'pengguna',
             'link_t'    => 'master',
-            'divisi'    => $this->Model_divisi->get()
         );
-        if(!empty($this->uri->segment(3))) {
-            $data['mode'] = 'edit';
-            $data['form'] = $this->Model_pengguna->getById($this->uri->segment(3));
-        }else {
-            $data['mode'] = 'save';
-        }
-		$this->load->view('layout/template',$data);
+		  $this->load->view('layout/template',$data);
     }
 
     public function save() {
         $data = array(
-            "userName"              => $this->input->post('userName'),
-            "userPassword"          => password_hash($this->input->post('userPassword'),PASSWORD_DEFAULT),
-            "userNamaLengkap"       => $this->input->post('userNamaLengkap'),
-            "userDivisi"            => $this->input->post('userDivisi'),
-            "userCreatedAt"     => date('Y-m-d H:i:s')
+            "email"              => $this->input->post('email'),
+            "password"          => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
+            "name"       => $this->input->post('name'),
+            "user_level"            => $this->input->post('level'),
+            "created_at"     => date('Y-m-d H:i:s'),
+            "updated_at"     => date('Y-m-d H:i:s'),
         );
 
-        if($this->Model_pengguna->store($data)) {
-            $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+        if($this->db->insert('users',$data)) {
+            $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success!</strong> Berhasil simpan data.
           </div>');
@@ -64,26 +58,11 @@ class Pengguna extends CI_Controller {
         }
     }
 
-    public function edit() {
-        $id = $this->input->post('userId',true);
-        $kat = array("userName"=>$this->input->post('userName',true),"userNamaLengkap"=>$this->input->post('userNamaLengkap',true),"userDivisi"=>$this->input->post('userDivisi',true));
-        if($this->Model_pengguna->update($id,$kat,$this->input->post('userNameOld'))) {
-            $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> Berhasil ubah data.
-          </div>');
-        }else {
-            $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Fail!</strong> Gagal ubah data.
-          </div>');
-        }
-        redirect(base_url()."pengguna");
-    }
 
     public function delete() {
         $id = $this->uri->segment(3);
-        if($this->Model_pengguna->remove($id)) {
+        $this->db->where('id', $id);
+        if($this->db->delete('users')) {
             $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success!</strong> Berhasil hapus data.
@@ -99,7 +78,8 @@ class Pengguna extends CI_Controller {
 
     public function resetpassword() {
         $id = $this->uri->segment(3);
-        if($this->Model_pengguna->resetpass($id)) {
+        $this->db->where('id', $id);
+        if($this->db->update('users',array('password'=>password_hash("12345678",PASSWORD_BCRYPT)))) {
             $this->session->set_flashdata('status','<div class="alert alert-info alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
             <strong>Success!</strong> Berhasil reset password.
@@ -113,30 +93,5 @@ class Pengguna extends CI_Controller {
         redirect(base_url().'pengguna');
     }
 
-    public function kirimNotif() {
-      $id = $this->uri->segment(3);
-      $notif = $this->db->get_where('akunnotifikasi',array('userId'=>$id))->row_array();
-      $nama = $this->session->userdata('userNamaLengkap');
-      if(!empty($notif)) {
-          $a = $this->Model_notifikasi->sendMessage("Pemberitahuan. Terima kasih telah menggunakan Paperless System.",array($notif['notifId']),$id,$this->session->userdata('userId'));
-          if($a) {
-            $this->session->set_flashdata('status','<div class="alert alert-info alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> Berhasil kirim notifikasi.
-          </div>');
-          }else {
-            $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Fail!</strong> Gagal kirim notifikasi.
-          </div>');
-          }
-      }else {
-        $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
-            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Fail!</strong> Akun belum terdaftar.
-          </div>');
-      }
-      redirect(base_url().'pengguna');
-    }
 
 }

@@ -23,7 +23,7 @@
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Username</th>
+                    <th>Email</th>
                     <th>Nama</th>
                     <th>Grup Pengguna</th>
                     <th>Aksi</th>
@@ -33,14 +33,12 @@
             <?php $i = 1; if(!empty($table)){ foreach($table as $row){ ?>
                 <tr>
                     <td><?=$i++?></td>
-                    <td><?=$row->userName?></td>
-                    <td><?=$row->userNamaLengkap?></td>
-                    <td><?=$row->divisiNama?></td>
+                    <td><?=$row->email?></td>
+                    <td><?=$row->name?></td>
+                    <td><?=$row->user_level?></td>
                     <td>
-                        <button onclick="window.location.href='<?=base_url()?>pengguna/form/<?=$row->userId?>'" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
-                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>pengguna/delete/<?=$row->userId?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
-                        <button title="Reset Password" onclick="var w = confirm('Reset Password?'); if(w){ window.location.href='<?=base_url()?>pengguna/resetpassword/<?=$row->userId?>'; }"class="btn btn-primary btn-xs"><i class="fa fa-refresh"></i></button>
-                        <button title="Kirim Notifikasi" onclick="var w = confirm('Kirim Notifikasi?'); if(w){window.location.href='<?=base_url()?>pengguna/kirimnotif/<?=$row->userId?>'; }" class="btn btn-info btn-xs"><i class="fa fa-send"></i></button>
+                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>pengguna/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
+                        <button title="Reset Password" onclick="var w = confirm('Reset Password?'); if(w){ window.location.href='<?=base_url()?>pengguna/resetpassword/<?=$row->id?>'; }"class="btn btn-primary btn-xs"><i class="fa fa-refresh"></i></button>
                     </td>
                 </tr>
             <?php }}?>

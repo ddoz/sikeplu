@@ -40,7 +40,7 @@
                     <td><?=$row->status?></td>
                     <td>
                         <a href="<?=base_url()?>adminpengajuan/form/<?=$row->id?>" class="btn btn-warning btn-xs"><i class="fa fa-search"></i></a>
-                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>kategori/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
+                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>adminpengajuan/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
                     </td>
                 </tr>
             <?php }}?>

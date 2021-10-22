@@ -1,19 +1,18 @@
 <section class="content-header">
       <h1>
-        Kategori
+        Tipe Media
       </h1>
       <ol class="breadcrumb">
         <li><i class="fa fa-envelope"></i> Admin</li>
-        <li class="active"><i class="fa fa-plus"></i> Kategori</li>
+        <li class="active"><i class="fa fa-plus"></i> Tipe Media</li>
       </ol>
     </section>
 
 <section class="content">
 <div class="box box-primary">
     <div class="box-header with-border">
-        Data Kategori.
+        Data Tipe Media.
         <div class="pull-right">
-            <a href="<?=base_url()?>kategori/form" class="btn btn-primary"><i class="fa fa-plus"></i></a>
         </div>
      <div id="info-alert"><?=@$this->session->flashdata('status')?></div>
     </div>
@@ -31,10 +30,9 @@
             <?php $i = 1; if(!empty($table)) { foreach($table as $row){ ?>
                 <tr>
                     <td><?=$i++?></td>
-                    <td><?=$row->kategoriNama?></td>
+                    <td><?=$row->nama?></td>
                     <td>
-                        <button href="<?=base_url()?>kategori/form/<?=$row->kategoriId?>" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i></button>
-                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>kategori/delete/<?=$row->kategoriId?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
+                        <a href="<?=base_url()?>tipemedia/form/<?=$row->id?>" class="btn btn-warning btn-xs">Formulir Bukti Tayang</a>
                     </td>
                 </tr>
             <?php }}?>

@@ -18,33 +18,26 @@
      <div id="info-alert"><?=@$this->session->flashdata('status')?></div>
     </div>
     <div class="box-body">
-        <form method="POST" action="<?=base_url()?>pengguna/<?=$mode?>" target="" enctype="multipart/form-data">
+        <form method="POST" action="<?=base_url()?>pengguna/save" target="" enctype="multipart/form-data">
             <div class="form-group">
-                <label>Pilih Divisi</label>
-                <select name="userDivisi" id="" class="form-control" required>
-                    <option value="">Pilih Divisi</option>
-                    <?php if(!empty($divisi)){ foreach($divisi as $dv){ ?>
-                    <option <?php if(!empty($form)){ if($form->userDivisi==$dv->divisiId){ echo 'selected'; } } ?> value="<?=$dv->divisiId?>"><?=$dv->divisiNama?></option>
-                    <?php }}?>
+                <label>Pilih Level</label>
+                <select name="level" id="" class="form-control" required>
+                    <option value="">Pilih Level</option>
+                    <option value="0">Biasa</option>
+                    <option value="1">Admin</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>Username</label>
-                <?php if(!empty($form)){ ?>
-                <input type="hidden" name="userNameOld" value="<?=$form->userName?>">
-                <input type="hidden" name="userId" value="<?=$form->userId?>">
-                <?php }?>
-                <input <?php if(!empty($form)){ echo "value='".$form->userName."'"; }?> type="text" name="userName" required class="form-control">
+                <label>Email</label>
+                <input type="text" name="email" required class="form-control">
             </div>
-            <?php if(empty($form)) { ?>
             <div class="form-group">
                 <label>Password</label>
-                <input type="password" name="userPassword" required class="form-control">
+                <input type="password" name="password" required class="form-control">
             </div>
-            <?php }?>
             <div class="form-group">
                 <label>Nama Lengkap</label>
-                <input type="text" name="userNamaLengkap" <?php if(!empty($form)){ echo "value='".$form->userNamaLengkap."'"; }?> class="form-control">
+                <input type="text" name="name" required class="form-control">
             </div>
             <div class="form-group">
                 <button type="submit" name="cetak" class="btn btn-primary"><span class="fa fa-save"></span> Simpan</button>

@@ -37,15 +37,14 @@ class Akun extends CI_Controller {
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong> Password berhasil diubah.
               </div>');
-                redirect(base_url().'akun');
             }else {
                 $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Fail!</strong> Password gagal diubah.
               </div>');
-                redirect(base_url().'akun');
             }
         }
+        redirect(base_url().'akun');
     }
 
 }
