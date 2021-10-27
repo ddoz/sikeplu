@@ -9,7 +9,7 @@
     </section>
 
 <section class="content">
-<div class="box box-primary">
+<div class="box box-secondary">
     <div class="box-header with-border">
         Data Bukti Tayang.
      <div id="info-alert"><?=@$this->session->flashdata('status')?></div>

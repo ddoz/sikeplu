@@ -9,11 +9,11 @@
     </section>
 
 <section class="content">
-<div class="box box-primary">
+<div class="box box-secondary">
     <div class="box-header with-border">
         Data Pengguna.
         <div class="pull-right">
-            <a href="<?=base_url()?>pengguna/form" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+            <a href="<?=base_url()?>pengguna/form" class="btn btn-success"><i class="fa fa-plus"></i></a>
         </div>
      <div id="info-alert"><?=@$this->session->flashdata('status')?></div>
     </div>
@@ -38,7 +38,7 @@
                     <td><?=$row->user_level?></td>
                     <td>
                         <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>pengguna/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
-                        <button title="Reset Password" onclick="var w = confirm('Reset Password?'); if(w){ window.location.href='<?=base_url()?>pengguna/resetpassword/<?=$row->id?>'; }"class="btn btn-primary btn-xs"><i class="fa fa-refresh"></i></button>
+                        <button title="Reset Password" onclick="var w = confirm('Reset Password?'); if(w){ window.location.href='<?=base_url()?>pengguna/resetpassword/<?=$row->id?>'; }"class="btn btn-success btn-xs"><i class="fa fa-refresh"></i></button>
                     </td>
                 </tr>
             <?php }}?>

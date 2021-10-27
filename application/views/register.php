@@ -52,12 +52,12 @@
       <div class="row">
         <div class="col-xs-4">
           
-          <a href="<?=base_url()?>welcome" class="btn btn-primary btn-block btn-flat">Sign In</a>
+          <a href="<?=base_url()?>welcome" class="btn btn-success btn-block btn-flat">Sign In</a>
         </div>
         <div class="col-xs-4"></div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign Up</button>
+          <button type="submit" class="btn btn-success btn-block btn-flat">Sign Up</button>
         </div>
         <!-- /.col -->
       </div>

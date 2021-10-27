@@ -10,6 +10,15 @@ $(document).ready(function() {
     });
 });
 
+$("#tipemedia_id").change(function(e) {
+    var val = $(this).val();
+
+    if(val==2 || val == 4) {
+        $("#website").attr('required',true);
+    }else {
+        $("#website").attr('required',false);
+    }
+})
 
 $('#provinsi').change(function() {
     $('#kota').empty();

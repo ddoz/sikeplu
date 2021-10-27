@@ -9,11 +9,11 @@
     </section>
 
 <section class="content">
-<div class="box box-primary">
+<div class="box box-secondary">
     <div class="box-header with-border">
         Data Kategori.
         <div class="pull-right">
-            <a href="<?=base_url()?>kategori/form" class="btn btn-primary"><i class="fa fa-plus"></i></a>
+            <a href="<?=base_url()?>kategori/form" class="btn btn-success"><i class="fa fa-plus"></i></a>
         </div>
      <div id="info-alert"><?=@$this->session->flashdata('status')?></div>
     </div>

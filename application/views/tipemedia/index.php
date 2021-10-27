@@ -9,7 +9,7 @@
     </section>
 
 <section class="content">
-<div class="box box-primary">
+<div class="box box-secondary">
     <div class="box-header with-border">
         Data Tipe Media.
         <div class="pull-right">

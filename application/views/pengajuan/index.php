@@ -8,7 +8,7 @@
     </section>
 
 <section class="content">
-<div class="box box-primary">
+<div class="box box-secondary">
     <div class="box-header with-border">
         Form untuk Submit / Upload.
      <div id="info-alert"><?=$this->session->flashdata('status')?></div>
@@ -16,66 +16,126 @@
     <div class="box-body">
         <form method="POST" id="formUpload" action="<?=base_url()?>pengajuan/save" target="" enctype="multipart/form-data">
             <h3>Identitas Media</h3>
-            <div class="form-group">
-                <label>Tipe Media</label>
-                <select name="tipemedia_id" required id="" class="form-control">
-                    <option value="">Pilih</option>
-                    <?php foreach($tipemedia as $tp){ ?>
-                        <option <?=(@$proposal->tipemedia_id==$tp->id)?"selected":""?> value="<?=$tp->id?>"><?=$tp->nama?></option>
-                    <?php }?>
-                </select>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Nomor KTP</label>
+                        <input type="number" required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="">Nomor NPWP</label>
+                        <input type="number" required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Tipe Media</label>
+                        <select name="tipemedia_id" required id="tipemedia_id" class="form-control">
+                            <option value="">Pilih</option>
+                            <?php foreach($tipemedia as $tp){ ?>
+                                <option <?=(@$proposal->tipemedia_id==$tp->id)?"selected":""?> value="<?=$tp->id?>"><?=$tp->nama?></option>
+                            <?php }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nama Media</label>
+                        <input type="text" class="form-control" value="<?=@$proposal->nama_media?>" name="nama_media" id="nama_media" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nama Pemilik Perusahaan</label>
+                        <input type="text" class="form-control" value="<?=@$proposal->nama_pic?>" name="nama_pic" id="nama_pic" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Jabatan</label>
+                        <select name="jabatan_pic" id="jabatan_pic" required class="form-control">
+                            <option value="">Pilih</option>
+                        <?php foreach($jabatan as $jbt) { ?>
+                            <option <?=@$proposal->jabatan_pic==$jbt->id?"selected":""?> value="<?=$jbt->id?>"><?=$jbt->nama_jabatan?></option>
+                        <?php }?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Alamat Website Media</label>
+                        <input type="text" class="form-control" value="<?=@$proposal->website?>" name="website" id="website">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Alamat Redaksi 1</label>
+                        <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Alamat Redaksi 2</label>
+                        <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Provinsi</label>
+                        <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
+                        <select name="provinsi" id="provinsi" class="form-control selectUser" style="width:100%">
+                            <option value="">Pilih</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Kota</label>
+                        <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
+                        <select name="kota" id="kota" class="form-control selectUser" style="width:100%">
+                            <option value="">Pilih</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Kode POS</label>
+                        <input type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Email Perusahaan</label>
+                        <input type="text" value="<?=@$proposal->email_redaksi?>" class="form-control" name="email_redaksi" id="email_redaksi" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>No. Telp/HP Perusahaan</label>
+                        <input type="text" value="<?=@$proposal->kontak_redaksi?>" class="form-control" name="kontak_redaksi" id="kontak_redaksi" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>No. Rekening</label>
+                        <input type="text" value="<?=@$proposal->nomor_rekenig?>" class="form-control" name="nomor_rekenig" id="nomor_rekenig" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nama Bank</label>
+                        <input type="text" value="<?=@$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Upload Rekening</label>
+                        <input type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening" required>
+                    </div>
+                </div>
             </div>
-            <div class="form-group">
-                <label>Nama Media</label>
-                <input type="text" class="form-control" value="<?=@$proposal->nama_media?>" name="nama_media" id="nama_media" required>
-            </div>
-            <div class="form-group">
-                <label>Nama PIC</label>
-                <input type="text" class="form-control" value="<?=@$proposal->nama_pic?>" name="nama_pic" id="nama_pic" required>
-            </div>
-            <div class="form-group">
-                <label>Jabatan PIC</label>
-                <input type="text" class="form-control" value="<?=@$proposal->jabatan_pic?>" name="jabatan_pic" id="jabatan_pic" required>
-            </div>
-            <div class="form-group">
-                <label>Alamat Website Media</label>
-                <input type="text" class="form-control" value="<?=@$proposal->website?>" name="website" id="website" required>
-            </div>
-            <div class="form-group">
-                <label>Alamat Redaksi 1</label>
-                <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
-            </div>
-            <div class="form-group">
-                <label>Alamat Redaksi 2</label>
-                <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
-            </div>
-            <div class="form-group">
-                <label>Provinsi</label>
-                <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
-                <select name="provinsi" id="provinsi" class="form-control selectUser" style="width:100%">
-                    <option value="">Pilih</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Kota</label>
-                <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
-                <select name="kota" id="kota" class="form-control selectUser" style="width:100%">
-                    <option value="">Pilih</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Kode POS</label>
-                <input type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
-            </div>
-            <div class="form-group">
-                <label>Email Redaksi</label>
-                <input type="text" value="<?=@$proposal->email_redaksi?>" class="form-control" name="email_redaksi" id="email_redaksi" required>
-            </div>
-            <div class="form-group">
-                <label>Kontak Redaksi</label>
-                <input type="text" value="<?=@$proposal->kontak_redaksi?>" class="form-control" name="kontak_redaksi" id="kontak_redaksi" required>
-            </div>
-            
 
 
             <ul class="nav nav-tabs">
@@ -89,6 +149,36 @@
                     <h3>Kelengkapan Berkas</h3>
                     <div class="table-responsive">
                         <table class="table table-bordered">
+                            <tr
+                            <?php if(@$proposal->sk_pic_status=="1") { ?>
+                                class="bg-success"
+                                <?php }else if(@$proposal->sk_pic_status=="0") { ?>
+                                    class="bg-secondary"
+                                <?php }else { ?>
+                                    class="bg-danger"
+                                <?php }?>
+                            >
+                                <th>Akta Perusahaan Terakhir (Lengkap) (PDF *5MB)</th>
+                                <td>
+                                    <input type="file" name="akta_perusahaan" accept=".pdf" class="form-control">
+                                    <?php if(@$proposal->akta_perusahaan!="") { ?>
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->akta_perusahaan?>">Lihat Berkas</a>
+                                    <?php }?>
+                                </td>
+                                <td>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                </td>
+                                <td>
+
+                                <?php if(@$proposal->sk_pic_status=="1") { ?>
+                                    <i class="fa fa-check text-success"></i>
+                                    <?php }else if(@$proposal->sk_pic_status=="0") { ?>
+                                        <i class="fa fa-minus"></i>
+                                    <?php }else { ?>
+                                        <i class="fa fa-remove text-danger"></i>
+                                    <?php }?>
+                                </td>
+                            </tr>
                         
                             <tr <?php if(@$proposal->kartu_identitas_pic_status=="1") { ?>
                                 class="bg-success"
@@ -130,7 +220,7 @@
                                     class="bg-danger"
                                 <?php }?>
                             >
-                                <th>SK PIC (PDF *1MB)</th>
+                                <th>Surat Tugas Kepala Biro (PDF *1MB)</th>
                                 <td>
                                     <input type="file" name="sk_pic" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->sk_pic!="") { ?>
@@ -215,7 +305,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>SIUP/SITU (PDF *1MB)</th>
+                                <th>NIB (IU/SIUP/SITU) (PDF *1MB)</th>
                                 <td>
                                     <input type="file" name="siup_situ" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->siup_situ!="") { ?>
@@ -271,7 +361,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikast KEMENKUMHAM (PDF *1MB)</th>
+                                <th>Sertifikat KEMENKUMHAM (PDF *1MB)</th>
                                 <td>
                                     <input type="file" name="sertifikat_kemenkumham" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->sertifikat_kemenkumham!="") { ?>
@@ -319,19 +409,51 @@
                                     <?php }?>
                                 </td>
                             </tr>
+                            <tr
+                            <?php if(@$proposal->spt_tahun_terakhir_status=="1") { ?>
+                                class="bg-success"
+                                <?php }else if(@$proposal->spt_tahun_terakhir_status=="0") { ?>
+                                    class="bg-secondary"
+                                <?php }else { ?>
+                                    class="bg-danger"
+                                <?php }?>>
+                                <th>SPT Tahun Terakhir (PDF *1MB)</th>
+                                <td>
+                                    <input type="file" name="spt_tahun_terakhir" accept=".pdf" class="form-control">
+                                    <?php if(@$proposal->spt_tahun_terakhir!="") { ?>
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->spt_tahun_terakhir?>">Lihat Berkas</a>
+                                    <?php }?>
+                                </td>
+                                <td>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                </td>
+                                <td>
+                                <?php if(@$proposal->spt_tahun_terakhir_status=="1") { ?>
+                                    <i class="fa fa-check text-success"></i>
+                                    <?php }else if(@$proposal->spt_tahun_terakhir_status=="0") { ?>
+                                        <i class="fa fa-minus"></i>
+                                    <?php }else { ?>
+                                        <i class="fa fa-remove text-danger"></i>
+                                    <?php }?>
+                                </td>
+                            </tr>
                         </table>
                     </div>
 
 
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Simpan</button>
+                    <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
+                    <?php if(strtolower(@$proposal->status)!='diterima'){ ?>
+                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Simpan</button>
+                       <?php }?>
                     </div>
            
            </form>
                 </div>
                 <div id="menu1" class="tab-pane fade">
                     <h3>Ceklis Persyaratan</h3>
-                    <form action="<?=base_url()?>pengajuan/ceklis" method="post">
+                    <form action="<?=base_url()?>pengajuan/ceklis" method="post" enctype="multipart/form-data">
+                    <div class="row">
                     <?php if(!empty($ceklis)){ foreach($ceklis as $ck){ ?>
                         <input type="hidden" name="proposal_id" value="<?=$proposal->id?>">
                         <div class="form-group col-md-6">
@@ -343,11 +465,22 @@
                                     <option <?=($cd['id']==$ck['pilih'])?"selected":""?> value="<?=$cd['id']."_".$cd['nilai']?>"><?=$cd['nama_nilai']?></option>
                                 <?php }?>
                             </select>
+                            <div class="form-group">
+                                <label for="">Bukti Data (Upload jika pada kelengkapan berkas tidak tercatum)</label>
+                                <input type="file" name="bukti[]" class="form-control">
+                                <?php if($ck['file']!=""){ ?>
+                                <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=$ck['file']?>" class="text text-danger">Lihat Dokumen yang sudah diupload</a>
+                                <?php }else { echo "Belum Upload bukti data"; }?>
+                            </div>
                         </div>
 
                     <?php }}?>
-                    <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Simpan</button>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
+                        <?php if(strtolower(@$proposal->status)!='diterima'){ ?>
+                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Simpan</button>
+                       <?php }?>
                     </div>
                     </form>
                 </div>
@@ -357,7 +490,7 @@
     <div class="box-footer">
             <form action="">
                 <div class="form-group">
-                    <label for="">Status Saat ini Adalah : <?=strtoupper($proposal->status)?></label>
+                    <label for="">Status Saat ini Adalah : <?=strtoupper(@$proposal->status)?></label>
                 </div>
             </form>
     </div>

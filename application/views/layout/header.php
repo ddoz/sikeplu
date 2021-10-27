@@ -37,6 +37,42 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style>
+    .skin-blue .main-header .navbar {
+        background-color: #28a745;
+    }
+    .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+      background-color: rgba(255,255,255,.4);
+    box-shadow: 0 19px 38px rgba(0,0,0,.3),0 15px 12px rgba(0,0,0,.22)!important;
+    }
+    .skin-blue .main-header .navbar {
+        /* background-color: #3c8dbc; */
+        background-color: #28a745;
+        box-shadow: 0 3px 6px rgb(0 0 0 / 16%), 0 3px 6px rgb(0 0 0 / 23%);
+    }
+    .skin-blue .main-header .logo {
+        background-color: #fff;
+        color: #000;
+        border-bottom: 1px solid #ddd;
+    }
+    .skin-blue .user-panel>.info, .skin-blue .user-panel>.info>a {
+        color: #000;
+    }
+    .skin-blue .sidebar-menu>li.active>a {
+        border-left-color: #1e282c;
+    }
+    .skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li.menu-open>a {
+        color: #fff;
+        background: #28a745;
+    }
+    .skin-blue .sidebar-menu>li>a:hover {
+        background: #ddd;
+    }
+    .skin-blue .main-header li.user-header {
+        background-color: #fff;
+        color: #000 !important;
+    }
+  </style>
 
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
@@ -95,7 +131,7 @@
               <li class="user-header">
                 <img src="<?=base_url()?>assets/bluef/dist/img/avatar.png" class="img-circle" alt="User Image">
 
-                <p>
+                <p style="color:black">
                 <?=$this->session->userdata('userNamaLengkap')?>
                   <small><?=$this->session->userdata('userDivisi')?></small>
                 </p>

@@ -42,6 +42,7 @@ class Adminpengajuan extends CI_Controller {
                   $ins['nama_kriteria'] = $qk->nama_kriteria;
                   $ins['pilih'] = @$qpilih->kriteriadetail_id;
                   $ins['nilai'] = @$qpilih->nilai;
+                  $ins['file'] = @$qpilih->file;
                   $ins['detail'] = [];
                   $qdetail = $this->db->get_where('kriteria_penilaian_details',array('kriteria_penilaian_id'=>$qk->id))->result();
                   foreach($qdetail as $qd) {
@@ -65,6 +66,7 @@ class Adminpengajuan extends CI_Controller {
           'proposal' => $pengajuan,
           'ceklis' => $ceklis,
           'bukti' => $bukti,
+          'jabatan'=>$this->db->get('jabatan')->result(),
       );
       $this->load->view('layout/template',$data);
   }
@@ -132,7 +134,7 @@ class Adminpengajuan extends CI_Controller {
 
   public function approve() {
     $this->db->where('id',$this->uri->segment(3));
-    $this->db->update('proposals',array('status'=>'approved'));
+    $this->db->update('proposals',array('status'=>'diterima'));
     $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Success!</strong> Berhasil update data.
@@ -142,7 +144,7 @@ class Adminpengajuan extends CI_Controller {
 
   public function decline() {
     $this->db->where('id',$this->uri->segment(3));
-    $this->db->update('proposals',array('status'=>'declined'));
+    $this->db->update('proposals',array('status'=>'ditolak'));
     $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Success!</strong> Berhasil update data.

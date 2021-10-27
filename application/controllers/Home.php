@@ -13,10 +13,19 @@ class Home extends CI_Controller {
 	
 	public function index()
 	{
+        $this->db->from('proposals');
+        $this->db->join('tipe_media', 'tipe_media.id=proposals.tipemedia_id');
+        $this->db->where(array('proposals.user_id' => $this->session->userdata('userId')));
+        $cekproposal = $this->db->get();
+        $media = "";
+        if($cekproposal->num_rows() > 0) {
+            $media = $cekproposal->row();
+        }
         $data = array(
             'script'    => 'script/js_home',
             'page'      => 'home/index',
 			'link'      => 'home',
+            'media'     => $media
         );
 		$this->load->view('layout/template',$data);
 	}

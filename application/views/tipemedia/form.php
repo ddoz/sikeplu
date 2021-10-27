@@ -9,7 +9,7 @@
     </section>
 
 <section class="content">
-<div class="box box-primary">
+<div class="box box-secondary">
     <div class="box-header with-border">
         Form untuk menambahkan Formulir Bukti Tayang.
         <div class="pull-right">
@@ -42,7 +42,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Simpan</button>
+                <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Simpan</button>
             </div>
         </form>
 

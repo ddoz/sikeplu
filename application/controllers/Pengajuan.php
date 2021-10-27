@@ -26,6 +26,7 @@ class Pengajuan extends CI_Controller {
                     $ins['id_kriteria'] = $qk->id;
                     $ins['nama_kriteria'] = $qk->nama_kriteria;
                     $ins['pilih'] = @$qpilih->kriteriadetail_id;
+                    $ins['file'] = @$qpilih->file;
                     $ins['detail'] = [];
                     $qdetail = $this->db->get_where('kriteria_penilaian_details',array('kriteria_penilaian_id'=>$qk->id))->result();
                     foreach($qdetail as $qd) {
@@ -42,6 +43,7 @@ class Pengajuan extends CI_Controller {
             'link'      => 'pengajuan',
             'tipemedia'      => $this->db->get('tipe_media')->result(),
             'proposal' => $pengajuan,
+            'jabatan' => $this->db->get('jabatan')->result(),
             'ceklis' => $ceklis,
         );
 		$this->load->view('layout/template',$data);
@@ -52,30 +54,30 @@ class Pengajuan extends CI_Controller {
         //cek apakah sudah ada insert data
         $ceking = $this->db->get_where('proposals',array("user_id"=>$this->session->userdata('userId')));
         if($ceking->num_rows()>0) {
-            
-            if($this->Model_upload->update($ceking->row())) {
+            $update = $this->Model_upload->update($ceking->row());
+            if($update['status']) {
                 $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> Berhasil ubah data.
+                <strong>Success!</strong> '.$update['message'].'.
               </div>');
             }else {
                 $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Fail!</strong> Gagal ubah data. Silahkan Periksa Berkas Anda, tidak boleh lebih dari 2MB dan hanya bertipe Gambar atau PDF
+                <strong>Fail!</strong> '.$update['message'].'
               </div>');
             }
 
         }else {
-
-            if($this->Model_upload->store()) {
+            $store =  $this->Model_upload->store();
+            if($store['status']) {
                 $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Success!</strong> Berhasil simpan data.
+                <strong>Success!</strong> '.$store['message'].'.
               </div>');
             }else {
                 $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                <strong>Fail!</strong> Gagal simpan data. Silahkan Periksa Berkas Anda, tidak boleh lebih dari 2MB dan hanya bertipe Gambar atau PDF
+                <strong>Fail!</strong> '.$store['message'].'
               </div>');
             }
         }
@@ -89,7 +91,15 @@ class Pengajuan extends CI_Controller {
             "proposal_id" => $this->input->post("proposal_id"),
             "user_id" => $this->session->userdata("userId")
         );
+        $config['upload_path']          = './berkas/proposal/';
+        $config['allowed_types']        = 'jpg|png|jpeg|pdf|PDF';
+        $config['max_size']             = 2048; // 1MB
+        $config['encrypt_name']         = true;
+
+        $this->load->library('upload',$config);
+
         $this->db->trans_begin();
+
         foreach($this->input->post('kriteria_id') as $key => $krt){
 
             $cekDb = $this->db->get_where('kriteria_pilihs',array('proposal_id'=>$insert['proposal_id'], "user_id"=>$insert['user_id'], "kriteria_id"=>$krt));
@@ -102,6 +112,17 @@ class Pengajuan extends CI_Controller {
                     $update['kriteriadetail_id'] = explode("_",$this->input->post("kriteriadetail_id")[$key])[0];
                     $update['nilai'] = explode("_",$this->input->post("kriteriadetail_id")[$key])[1];
                 }
+
+                if(!empty($_FILES['bukti']['name'][$key])) {
+                    $_FILES['file']['name'] = $_FILES['bukti']['name'][$key];
+                    $_FILES['file']['type'] = $_FILES['bukti']['type'][$key];
+                    $_FILES['file']['tmp_name'] = $_FILES['bukti']['tmp_name'][$key];
+                    $_FILES['file']['error'] = $_FILES['bukti']['error'][$key];
+                    $_FILES['file']['size'] = $_FILES['bukti']['size'][$key];
+                    if ($this->upload->do_upload('file')) {
+                        $update['file'] = $this->upload->data("file_name");
+                    } 
+                }
                 $this->db->where(array('proposal_id'=>$insert['proposal_id'], "user_id"=>$insert['user_id'], "kriteria_id"=>$krt));
                 $this->db->update('kriteria_pilihs',$update);
             }else {
@@ -113,6 +134,16 @@ class Pengajuan extends CI_Controller {
                     'created_at' => date('Y-m-d H:i:s'),
                     'updated_at' => date('Y-m-d H:i:s'),
                 );
+                if(!empty($_FILES['bukti']['name'][$key])) {
+                    $_FILES['file']['name'] = $_FILES['bukti']['name'][$key];
+                    $_FILES['file']['type'] = $_FILES['bukti']['type'][$key];
+                    $_FILES['file']['tmp_name'] = $_FILES['bukti']['tmp_name'][$key];
+                    $_FILES['file']['error'] = $_FILES['bukti']['error'][$key];
+                    $_FILES['file']['size'] = $_FILES['bukti']['size'][$key];
+                    if ($this->upload->do_upload('file')) {
+                        $insert['file'] = $this->upload->data("file_name");
+                    }
+                }
                 if($this->input->post("kriteriadetail_id")[$key]!="") {
                     $insert['kriteriadetail_id'] = explode("_",$this->input->post("kriteriadetail_id")[$key])[0];
                     $insert['nilai'] = explode("_",$this->input->post("kriteriadetail_id")[$key])[1];
