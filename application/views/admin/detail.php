@@ -411,7 +411,7 @@
                     </tr>
                     <tr class="bg-info">
                         <th colspan="2"></th>
-                        <th>Rp. 6.000.000</th>
+                        <th><?=lihatNilaiFormula($proposal->tipemedia_id,$nilai)?></th>
                     </tr>
                     </table>
                     </div>
@@ -421,7 +421,55 @@
                     </div>
                     </form>
                 </div>
+<?php 
 
+function lihatNilaiFormula($tipemedia=0,$hasil=0) {
+    if($tipemedia==0) {
+        return "0";
+    }else {
+        $CI =& get_instance();
+        $data = $CI->db->order_by('abs(nilai)','desc')->get_where("formula_penilaian_media",array("tipemedia_id"=>$tipemedia))->result();
+        $total = 0;
+        $array_nilai = [];
+        foreach($data as $d) {
+            switch ($d->simbol) {
+                case '<=':
+                    if($hasil <= $d->nilai) {
+                        $array_nilai[]=$d->hasil;
+                    }
+                    break;
+                // case '>=':
+                //     if($hasil >= $d->nilai) {
+                //         $array_nilai[]=$d->hasil;
+                //     }
+                //     break;
+                // case '==':
+                //     if($hasil == $d->nilai) {
+                //         $array_nilai[]=$d->hasil;
+                //     }
+                //     break;
+                // case '>':
+                //     if($hasil > $d->nilai) {
+                //         $array_nilai[]=$d->hasil;
+                //     }
+                //     break;
+                // case '<':
+                //     if($hasil > $d->nilai) {
+                //         $array_nilai[]=$d->hasil;
+                //     }
+                //     break;
+                default:
+                    # code...
+                    break;
+            }
+        }
+        if($array_nilai!=null) {
+            return end($array_nilai);
+        }
+    }
+}
+
+?>
                 <div id="menu2" class="tab-pane fade">
                     Data Pengiriman Bukti Tayang
                     <div class="table-responsive">

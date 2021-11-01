@@ -60,6 +60,7 @@
         </form>
 
         <div class="table-responsive">
+            <h4 class="text-danger">*Untuk Saat ini hanya support simbol <=</h4>
         <table class="table table-bordered">
             <tr>
                 <th>No</th>

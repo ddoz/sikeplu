@@ -73,7 +73,7 @@ class Tipemedia extends CI_Controller {
         $data = array(
             'script'    => 'script/js_pengguna',
             'page'      => 'tipemedia/penilaian',
-            'link'      => 'penilaian',
+            'link'      => 'tipemedia',
             'link_t'    => 'master',
             'form'    => $this->db->get_where('formula_penilaian_media',array('tipemedia_id'=>$id))->result(), 
             'simbol' => $this->field_enums('formula_penilaian_media','simbol'),
