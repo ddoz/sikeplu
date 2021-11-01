@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/bluef/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" type="text/css" href="<?php echo base_url().'assets/bluef/toast/jquery.toast.min.css'?>"/>
 <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="shortcut icon" href="<?=base_url()?>assets/front/images/logo.png" type="image/x-icon">
   <!-- <link rel="stylesheet" href="<?=base_url()?>assets/bluef/style.css"> -->
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

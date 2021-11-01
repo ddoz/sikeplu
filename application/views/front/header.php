@@ -22,6 +22,8 @@ https://templatemo.com/tm-535-softy-pinko
 
     <link rel="stylesheet" href="<?=base_url()?>assets/front/css/templatemo-softy-pinko.css">
 
+    <link rel="shortcut icon" href="<?=base_url()?>assets/front/images/logo.png" type="image/x-icon">
+
     </head>
     
     <body>
@@ -45,7 +47,7 @@ https://templatemo.com/tm-535-softy-pinko
                     <nav class="main-nav">
                         <!-- ***** Logo Start ***** -->
                         <a href="#" class="logo">
-                            <img width="30" src="<?=base_url()?>assets/front/images/logo.png" alt="SIKEPLU LAMPUNG TENGAH"/>
+                            <img width="30" src="<?=base_url()?>assets/front/images/logo.png" alt="SIKEPLU LAMPUNG UTARA"/>
                             SIKEPLU LAMPUNG UTARA
                         </a>
                         <!-- ***** Logo End ***** -->
