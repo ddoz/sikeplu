@@ -33,6 +33,8 @@
                     <td><?=$row->nama?></td>
                     <td>
                         <a href="<?=base_url()?>tipemedia/form/<?=$row->id?>" class="btn btn-warning btn-xs">Formulir Bukti Tayang</a>
+                        <a href="<?=base_url()?>tipemedia/penilaian/<?=$row->id?>" class="btn btn-success btn-xs">Formula Penilaian</a>
+                        <a href="<?=base_url()?>tipemedia/kriteria/<?=$row->id?>" class="btn btn-danger btn-xs">Kriteria Penilaian</a>
                     </td>
                 </tr>
             <?php }}?>

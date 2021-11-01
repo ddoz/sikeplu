@@ -20,6 +20,7 @@
         <button class="btn btn-primary btnFilter"><i class="fa fa-plus"></i> Tambah Data</button>
         </div>
         <form action="<?=base_url()?>dataupload/save" method="post" style="display:none" id="formFilter" enctype="multipart/form-data">
+            <?php if(!empty($formula)) { ?>
                 <input type="hidden" name="proposal_id" value="<?=$proposal_id?>">
                 <input type="hidden" id="statusFilter" value="0">
                 <div class="row">
@@ -48,8 +49,8 @@
                         </div>
                     </div>
                 </div>
+                <?php } ?>
         </form>
-
         <div class="table-responsive">
             <table class="table table-hover" id="datatable">
                 <thead>
