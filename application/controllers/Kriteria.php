@@ -214,7 +214,7 @@ class Kriteria extends CI_Controller {
         }else {
             $this->db->where('id', $id);
             if($this->db->delete('kriteria_penilaians',)) {
-                $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+                $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
                 <strong>Success!</strong> Berhasil hapus data.
               </div>');

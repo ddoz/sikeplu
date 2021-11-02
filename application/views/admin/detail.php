@@ -406,12 +406,12 @@
                             </tr>
                     <?php } ?> 
                     <tr class="bg-info">
-                        <th colspan="2"></th>
+                        <th colspan="2">Total Nilai</th>
                         <th><?=$nilai?></th>
                     </tr>
                     <tr class="bg-info">
-                        <th colspan="2"></th>
-                        <th><?=lihatNilaiFormula($proposal->tipemedia_id,$nilai)?></th>
+                        <th colspan="2">Total Uang</th>
+                        <th>Rp. <?=number_format(lihatNilaiFormula($proposal->tipemedia_id,$nilai))?></th>
                     </tr>
                     </table>
                     </div>
@@ -465,6 +465,8 @@ function lihatNilaiFormula($tipemedia=0,$hasil=0) {
         }
         if($array_nilai!=null) {
             return end($array_nilai);
+        }else {
+            return 0;
         }
     }
 }
