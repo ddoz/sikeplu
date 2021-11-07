@@ -17,122 +17,126 @@
         <form method="POST" id="formUpload" action="<?=base_url()?>pengajuan/save" target="" enctype="multipart/form-data">
             <h3>Identitas Media</h3>
             <div class="row">
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="">Nomor KTP</label>
-                        <input type="number" required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="">Nomor NPWP</label>
-                        <input type="number" required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Tipe Media</label>
-                        <select name="tipemedia_id" required id="tipemedia_id" class="form-control">
-                            <option value="">Pilih</option>
-                            <?php foreach($tipemedia as $tp){ ?>
-                                <option <?=(@$proposal->tipemedia_id==$tp->id)?"selected":""?> value="<?=$tp->id?>"><?=$tp->nama?></option>
-                            <?php }?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Nama Media</label>
-                        <input type="text" class="form-control" value="<?=@$proposal->nama_media?>" name="nama_media" id="nama_media" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Nama Pemilik Perusahaan</label>
-                        <input type="text" class="form-control" value="<?=@$proposal->nama_pic?>" name="nama_pic" id="nama_pic" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Jabatan</label>
-                        <select name="jabatan_pic" id="jabatan_pic" required class="form-control">
-                            <option value="">Pilih</option>
-                        <?php foreach($jabatan as $jbt) { ?>
-                            <option <?=@$proposal->jabatan_pic==$jbt->id?"selected":""?> value="<?=$jbt->id?>"><?=$jbt->nama_jabatan?></option>
-                        <?php }?>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Alamat Website Media</label>
-                        <input type="text" class="form-control" value="<?=@$proposal->website?>" name="website" id="website">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Alamat Redaksi 1</label>
-                        <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Alamat Redaksi 2</label>
-                        <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Provinsi</label>
-                        <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
-                        <select name="provinsi" id="provinsi" class="form-control selectUser" style="width:100%">
-                            <option value="">Pilih</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Kota</label>
-                        <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
-                        <select name="kota" id="kota" class="form-control selectUser" style="width:100%">
-                            <option value="">Pilih</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Kode POS</label>
-                        <input type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Email Perusahaan</label>
-                        <input type="text" value="<?=@$proposal->email_redaksi?>" class="form-control" name="email_redaksi" id="email_redaksi" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>No. Telp/HP Perusahaan</label>
-                        <input type="text" value="<?=@$proposal->kontak_redaksi?>" class="form-control" name="kontak_redaksi" id="kontak_redaksi" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>No. Rekening</label>
-                        <input type="text" value="<?=@$proposal->nomor_rekenig?>" class="form-control" name="nomor_rekenig" id="nomor_rekenig" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Nama Bank</label>
-                        <input type="text" value="<?=@$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label>Upload Rekening</label>
-                        <input type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening" required>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Nomor KTP</label>
+                                <input type="number" required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Nomor NPWP</label>
+                                <input type="number" required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Tipe Media</label>
+                                <select name="tipemedia_id" required id="tipemedia_id" class="form-control">
+                                    <option value="">Pilih</option>
+                                    <?php foreach($tipemedia as $tp){ ?>
+                                        <option <?=(@$proposal->tipemedia_id==$tp->id)?"selected":""?> value="<?=$tp->id?>"><?=$tp->nama?></option>
+                                    <?php }?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nama Media</label>
+                                <input type="text" class="form-control" value="<?=@$proposal->nama_media?>" name="nama_media" id="nama_media" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nama Pemilik Perusahaan</label>
+                                <input type="text" class="form-control" value="<?=@$proposal->nama_pic?>" name="nama_pic" id="nama_pic" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Jabatan</label>
+                                <select name="jabatan_pic" id="jabatan_pic" required class="form-control">
+                                    <option value="">Pilih</option>
+                                <?php foreach($jabatan as $jbt) { ?>
+                                    <option <?=@$proposal->jabatan_pic==$jbt->id?"selected":""?> value="<?=$jbt->id?>"><?=$jbt->nama_jabatan?></option>
+                                <?php }?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Alamat Website Media</label>
+                                <input type="text" class="form-control" value="<?=@$proposal->website?>" name="website" id="website">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Alamat Redaksi 1</label>
+                                <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Alamat Redaksi 2</label>
+                                <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Provinsi</label>
+                                <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
+                                <select name="provinsi" id="provinsi" class="form-control selectUser" style="width:100%">
+                                    <option value="">Pilih</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kota</label>
+                                <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
+                                <select name="kota" id="kota" class="form-control selectUser" style="width:100%">
+                                    <option value="">Pilih</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kode POS</label>
+                                <input type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Email Perusahaan</label>
+                                <input type="text" value="<?=@$proposal->email_redaksi?>" class="form-control" name="email_redaksi" id="email_redaksi" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>No. Telp/HP Perusahaan</label>
+                                <input type="text" value="<?=@$proposal->kontak_redaksi?>" class="form-control" name="kontak_redaksi" id="kontak_redaksi" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>No. Rekening</label>
+                                <input type="text" value="<?=@$proposal->nomor_rekenig?>" class="form-control" name="nomor_rekenig" id="nomor_rekenig" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Nama Bank</label>
+                                <input type="text" value="<?=@$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Upload Rekening</label>
+                                <input type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening" required>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

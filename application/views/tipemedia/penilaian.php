@@ -49,7 +49,7 @@
             </div>
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="">Hasil</label>
+                    <label for="">Hasil (Berupa Rupiah/Nilai)</label>
                     <input type="text" required name="hasil" class="form-control">
                 </div>
             </div>
