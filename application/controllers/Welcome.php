@@ -24,6 +24,14 @@ class Welcome extends CI_Controller {
 		$this->load->view('register');
 	}
 
+	public function reset()
+	{
+		if(!empty($this->session->userdata('userId'))) {
+			redirect(base_url()."home");
+		}
+		$this->load->view('reset');
+	}
+
 	public function signup() {
 		$data = [
 			"name" => $this->input->post("nama_lengkap"),

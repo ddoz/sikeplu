@@ -34,34 +34,19 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Reset Password</p>
     <?php if(!empty($this->session->flashdata())){ echo "<div class='alert alert-info'><center>".$this->session->flashdata('status')."</center></div>"; } ?>
-    <form action="<?=base_url()?>welcome/auth" method="post">
+    <form action="<?=base_url()?>mailer/lupa_password" method="post">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="Email" required name="username">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password" required name="password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Reset</button>
         </div>
         <!-- /.col -->
-      </div>
-      <div class="row">
-        <div class="col-xs-12 text-center">
-          <p><a href="<?=base_url()?>welcome/reset">Lupa Password?</a></p>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12 text-center">
-          <hr>
-          <a href="<?=base_url()?>welcome/register" class="btn btn-success btn-flat">Sign Up</a>
-        </div>
       </div>
     </form>
   </div>
