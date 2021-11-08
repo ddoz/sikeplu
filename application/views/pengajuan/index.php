@@ -14,7 +14,7 @@
      <div id="info-alert"><?=$this->session->flashdata('status')?></div>
     </div>
     <div class="box-body">
-        <form method="POST" id="formUpload" action="<?=base_url()?>pengajuan/save" target="" enctype="multipart/form-data">
+        <form method="POST" id="formUpload" action="<?=base_url()?>pengajuan/save" target="" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin akan mengirim data yang sudah di inputkan?')">
             <h3>Identitas Media</h3>
             <div class="row">
                 <div class="col-md-6">
@@ -122,7 +122,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>No. Rekening</label>
-                                <input type="text" value="<?=@$proposal->nomor_rekenig?>" class="form-control" name="nomor_rekenig" id="nomor_rekenig" required>
+                                <input type="text" value="<?=@$proposal->nomor_rekening?>" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -134,7 +134,10 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Upload Rekening</label>
-                                <input type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening" required>
+                                <input <?php  if(@$proposal->upload_rekening==null){ echo 'required'; }?> type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening">
+                                <?php if(@$proposal->upload_rekening!=null){ ?>
+                                <a href="<?=base_url()?>berkas/proposal/<?=$proposal->upload_rekening?>">Lihat Dokumen</a>
+                                <?php }?>
                             </div>
                         </div>
                     </div>
@@ -451,7 +454,7 @@
                     <div class="form-group">
                     <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
                     <?php if(strtolower(@$proposal->status)!='diterima'){ ?>
-                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Simpan</button>
+                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
                        <?php }?>
                     </div>
            
@@ -459,7 +462,7 @@
                 </div>
                 <div id="menu1" class="tab-pane fade">
                     <h3>Ceklis Persyaratan</h3>
-                    <form action="<?=base_url()?>pengajuan/ceklis" method="post" enctype="multipart/form-data">
+                    <form action="<?=base_url()?>pengajuan/ceklis" method="post" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin akan mengirim data yang sudah di inputkan?')">
                     <div class="row">
                     <?php if(!empty($ceklis)){ foreach($ceklis as $ck){ ?>
                         <input type="hidden" name="proposal_id" value="<?=$proposal->id?>">
@@ -473,7 +476,7 @@
                                 <?php }?>
                             </select>
                             <div class="form-group">
-                                <label for="">Bukti Data <?=$ck['nama_kriteria']?> (<?=$ck['keterangan']?>)</label>
+                                <label for="">Upload Data (<?=$ck['keterangan']?>)</label>
                                 <input type="file" name="bukti[]" class="form-control">
                                 <?php if($ck['file']!=""){ ?>
                                 <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=$ck['file']?>" class="text text-danger">Lihat Dokumen <?=$ck['nama_kriteria']?> yang sudah diupload</a>
@@ -487,7 +490,7 @@
                         <label for="" class="text text-danger">*Bisa Di Isi setelah anda melakukan submit Identitas Media dan Kelengkapan Berkas</label><br>
                         <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
                         <?php if(!empty($ceklis)){ if(strtolower(@$proposal->status)!='diterima'){ ?>
-                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Simpan</button>
+                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
                        <?php }}?>
                     </div>
                     </form>
