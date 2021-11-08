@@ -157,9 +157,9 @@
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tr
-                            <?php if(@$proposal->sk_pic_status=="1") { ?>
+                            <?php if(@$proposal->akta_perusahaan_status=="1") { ?>
                                 class="bg-success"
-                                <?php }else if(@$proposal->sk_pic_status=="0") { ?>
+                                <?php }else if(@$proposal->akta_perusahaan_status=="0") { ?>
                                     class="bg-secondary"
                                 <?php }else { ?>
                                     class="bg-danger"
@@ -173,13 +173,13 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->akta_perusahaan_ket?></textarea>
                                 </td>
                                 <td>
 
-                                <?php if(@$proposal->sk_pic_status=="1") { ?>
+                                <?php if(@$proposal->akta_perusahaan_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
-                                    <?php }else if(@$proposal->sk_pic_status=="0") { ?>
+                                    <?php }else if(@$proposal->akta_perusahaan_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
                                     <?php }else { ?>
                                         <i class="fa fa-remove text-danger"></i>
