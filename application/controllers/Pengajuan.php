@@ -25,6 +25,7 @@ class Pengajuan extends CI_Controller {
                 foreach($qkriteria as $qk) {
                     $ins['id_kriteria'] = $qk->id;
                     $ins['nama_kriteria'] = $qk->nama_kriteria;
+                    $ins['keterangan'] = $qk->keterangan;
                     $ins['pilih'] = @$qpilih->kriteriadetail_id;
                     $ins['file'] = @$qpilih->file;
                     $ins['detail'] = [];
