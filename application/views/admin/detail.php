@@ -164,8 +164,8 @@
                                     <textarea name="akta_perusahaan_ket" id="akta_perusahaan_ket" cols="30" rows="10" class="form-control"><?=@$proposal->akta_perusahaan_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-akta_perusahaan"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-akta_perusahaan"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-akta_perusahaan"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-akta_perusahaan"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr <?php if(@$proposal->kartu_identitas_pic_status=="1") { ?>
@@ -189,8 +189,8 @@
                                     <textarea name="kartu_identitas_pic_ket" id="kartu_identitas_pic_ket" cols="30" rows="10" class="form-control"><?=@$proposal->kartu_identitas_pic_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-kartu_identitas_pic"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-kartu_identitas_pic"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-kartu_identitas_pic"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-kartu_identitas_pic"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -213,8 +213,8 @@
                                 </td>
                                 <td>
 
-                                    <button class="btn btn-success" type="submit" name="check" value="1-sk_pic"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-sk_pic"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-sk_pic"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-sk_pic"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -235,8 +235,8 @@
                                     <textarea name="surat_permohonan_kerjasama_ket" id="surat_permohonan_kerjasama_ket" cols="30" rows="10" class="form-control"><?=@$proposal->surat_permohonan_kerjasama_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-surat_permohonan_kerjasama"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-surat_permohonan_kerjasama"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-surat_permohonan_kerjasama"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-surat_permohonan_kerjasama"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -257,8 +257,8 @@
                                     <textarea name="proposal_penawaran_ket" id="proposal_penawaran_ket" cols="30" rows="10" class="form-control"><?=@$proposal->proposal_penawaran_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-proposal_penawaran"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-proposal_penawaran"><i class="fa fa-remove"></i></button>
+                                <button class="btn btn-success" type="submit" name="check" value="1-proposal_penawaran"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-proposal_penawaran"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -279,8 +279,8 @@
                                     <textarea name="siup_situ_ket" id="siup_situ_ket" cols="30" rows="10" class="form-control"><?=@$proposal->siup_situ_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-siup_situ"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-siup_situ"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-siup_situ"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-siup_situ"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -301,8 +301,8 @@
                                     <textarea name="npwp_ket" id="npwp_ket" cols="30" rows="10" class="form-control"><?=@$proposal->npwp_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-npwp"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-npwp"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-npwp"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-npwp"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -323,8 +323,8 @@
                                     <textarea name="sertifikat_kemenkumham_ket" id="sertifikat_kemenkumham_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_kemenkumham_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-sertifikat_kemenkumham"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-sertifikat_kemenkumham"><i class="fa fa-remove"></i></button>
+                                    <button class="btn btn-success" type="submit" name="check" value="1-sertifikat_kemenkumham"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-sertifikat_kemenkumham"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -345,8 +345,8 @@
                                     <textarea name="sertifikat_dewan_pers_ket" id="sertifikat_dewan_pers_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_dewan_pers_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-sertifikat_dewan_pers"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-sertifikat_dewan_pers"><i class="fa fa-remove"></i></button>
+                                <button class="btn btn-success" type="submit" name="check" value="1-sertifikat_dewan_pers"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-sertifikat_dewan_pers"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                             <tr
@@ -367,8 +367,8 @@
                                     <textarea name="spt_tahun_terakhir_ket" id="spt_tahun_terakhir_ket" cols="30" rows="10" class="form-control"><?=@$proposal->spt_tahun_terakhir_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-spt_tahun_terakhir"><i class="fa fa-check"></i></button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-spt_tahun_terakhir"><i class="fa fa-remove"></i></button>
+                                <button class="btn btn-success" type="submit" name="check" value="1-spt_tahun_terakhir"><i class="fa fa-check"></i> Terima</button>
+                                    <button class="btn btn-danger"type="submit" name="check" value="9-spt_tahun_terakhir"><i class="fa fa-remove"></i> Tolak</button>
                                 </td>
                             </tr>
                         </table>

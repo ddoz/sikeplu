@@ -36,8 +36,8 @@
                     <td><?=$row->keterangan?></td>
                     <td>
                     <button type="button" data-keterangan="<?=$row->keterangan?>" data-nama_kriteria="<?=$row->nama_kriteria?>" data-id="<?=$row->id?>" class="btn btn-warning btn-xs btnEditKriteria"><i class="fa fa-pencil"></i></button>
-                        <a href="<?=base_url()?>kriteria/detail/<?=$row->id?>" class="btn btn-info btn-xs"><i class="fa fa-search"></i></a>
-                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>kriteria/hapus/<?=$row->id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                        <a href="<?=base_url()?>kriteria/detail/<?=$row->id?>" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Lihat Detail</a>
+                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>kriteria/hapus/<?=$row->id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Hapus Data</a>
                     </td>
                 </tr>
             <?php }}?>

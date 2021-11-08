@@ -37,8 +37,8 @@
                     <td><?=$row->name?></td>
                     <td><?=$row->user_level?></td>
                     <td>
-                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>pengguna/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></button>
-                        <button title="Reset Password" onclick="var w = confirm('Reset Password?'); if(w){ window.location.href='<?=base_url()?>pengguna/resetpassword/<?=$row->id?>'; }"class="btn btn-success btn-xs"><i class="fa fa-refresh"></i></button>
+                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>pengguna/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Hapus Data</button>
+                        <button title="Reset Password" onclick="var w = confirm('Reset Password?'); if(w){ window.location.href='<?=base_url()?>pengguna/resetpassword/<?=$row->id?>'; }"class="btn btn-success btn-xs"><i class="fa fa-refresh"></i> Reset Password</button>
                     </td>
                 </tr>
             <?php }}?>

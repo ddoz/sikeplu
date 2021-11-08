@@ -57,8 +57,8 @@
                     <td><?=$row->nama_penilaian?></td>
                     <td><?=$row->nilai?></td>
                     <td>
-                        <button type="button" data-nama_penilaian="<?=$row->nama_penilaian?>" data-nilai="<?=$row->nilai?>" data-kriteria="<?=$row->kriteria_penilaian_id?>" data-id="<?=$row->id?>" class="btn btn-info btn-xs btnEdit"><i class="fa fa-pencil"></i></button>
-                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>kriteria/hapusdetail/<?=$row->id?>/<?=$row->kriteria_penilaian_id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                        <button type="button" data-nama_penilaian="<?=$row->nama_penilaian?>" data-nilai="<?=$row->nilai?>" data-kriteria="<?=$row->kriteria_penilaian_id?>" data-id="<?=$row->id?>" class="btn btn-info btn-xs btnEdit"><i class="fa fa-pencil"></i> Ubah Data</button>
+                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>kriteria/hapusdetail/<?=$row->id?>/<?=$row->kriteria_penilaian_id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Hapus Data</a>
                     </td>
                 </tr>
             <?php }}?>

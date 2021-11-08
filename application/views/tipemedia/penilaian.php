@@ -75,7 +75,7 @@
                     <td><?=$v->simbol?></td>
                     <td><?=$v->nilai?></td>
                     <td><?=number_format($v->hasil)?></td>
-                    <td><a onclick="return confirm('Hapus Data?')"class="btn btn-danger btn-xs" href="<?=base_url()?>tipemedia/hapuspenilaian/<?=$v->id?>/<?=$id?>"><i class="fa fa-remove"></i></a></td>
+                    <td><a onclick="return confirm('Hapus Data?')"class="btn btn-danger btn-xs" href="<?=base_url()?>tipemedia/hapuspenilaian/<?=$v->id?>/<?=$id?>"><i class="fa fa-remove"></i> Hapus Data</a></td>
                 </tr>    
             <?php }?>
         </table>

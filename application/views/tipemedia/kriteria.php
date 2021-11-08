@@ -56,7 +56,7 @@
                     <td><?=$i++?></td>
                     <td><?=$row->nama_kriteria?></td>
                     <td>
-                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>tipemedia/hapusdetail/<?=$row->id?>/<?=$tipemedia->id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>tipemedia/hapusdetail/<?=$row->id?>/<?=$tipemedia->id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Hapus Data</a>
                     </td>
                 </tr>
             <?php }}?>
