@@ -66,7 +66,7 @@
                 <th>No</th>
                 <th>Simbol</th>
                 <th>Nilai</th>
-                <th>Hasil</th>
+                <th>Hasil (Rupiah)</th>
                 <th></th>
             </tr>
             <?php foreach($form as $k => $v){ ?>

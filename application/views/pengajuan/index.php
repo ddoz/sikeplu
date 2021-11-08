@@ -139,6 +139,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <img src="<?=base_url()?>assets/alur_user.png" class="img-responsive img-thumbnail" alt="">
+                </div>
             </div>
 
 
@@ -470,11 +473,11 @@
                                 <?php }?>
                             </select>
                             <div class="form-group">
-                                <label for="">Bukti Data (Upload jika pada kelengkapan berkas tidak tercatum)</label>
+                                <label for="">Bukti Data <?=$ck['nama_kriteria']?> (Upload jika pada kelengkapan berkas tidak tercatum)</label>
                                 <input type="file" name="bukti[]" class="form-control">
                                 <?php if($ck['file']!=""){ ?>
-                                <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=$ck['file']?>" class="text text-danger">Lihat Dokumen yang sudah diupload</a>
-                                <?php }else { echo "Belum Upload bukti data"; }?>
+                                <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=$ck['file']?>" class="text text-danger">Lihat Dokumen <?=$ck['nama_kriteria']?> yang sudah diupload</a>
+                                <?php }else { echo "Belum Upload bukti data ".$ck['nama_kriteria']; }?>
                             </div>
                         </div>
 
