@@ -95,6 +95,7 @@ class Kriteria extends CI_Controller {
     public function save() {
         $data = array(
             "nama_kriteria"              => $this->input->post('nama_kriteria'),
+            "keterangan"              => $this->input->post('keterangan'),
             "created_at" => date('Y-m-d H:i:s'),
             "updated_at" => date('Y-m-d H:i:s'),
         );
@@ -139,6 +140,7 @@ class Kriteria extends CI_Controller {
     public function update() {
         $data = array(
             "nama_kriteria"              => $this->input->post('nama_kriteria'),
+            "keterangan"              => $this->input->post('keterangan'),
             "updated_at" => date('Y-m-d H:i:s'),
         );
 

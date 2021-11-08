@@ -24,6 +24,10 @@
                 <input type="text" name="nama_kriteria" required class="form-control">
             </div>
             <div class="form-group">
+                <label for="">Keterangan</label>
+                <input type="text" name="keterangan" required class="form-control">
+            </div>
+            <div class="form-group">
                 <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Simpan</button>
             </div>
         </form>

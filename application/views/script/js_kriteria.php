@@ -19,11 +19,13 @@ $('.btnEditKriteria').click(function() {
 
 var id = $(this).attr('data-id');
 var nama_kriteria = $(this).attr('data-nama_kriteria');
+var keterangan = $(this).attr('data-keterangan');
 
 $("#myModal").modal('show');
 
 $("#id").val(id);
 $("#nama_kriteria").val(nama_kriteria);
+$("#keterangan").val(keterangan);
 })
 
 </script>

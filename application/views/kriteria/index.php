@@ -24,6 +24,7 @@
                 <tr>
                     <th width="50px">No</th>
                     <th>Nama</th>
+                    <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -32,8 +33,9 @@
                 <tr>
                     <td><?=$i++?></td>
                     <td><?=$row->nama_kriteria?></td>
+                    <td><?=$row->keterangan?></td>
                     <td>
-                    <button type="button" data-nama_kriteria="<?=$row->nama_kriteria?>" data-id="<?=$row->id?>" class="btn btn-warning btn-xs btnEditKriteria"><i class="fa fa-pencil"></i></button>
+                    <button type="button" data-keterangan="<?=$row->keterangan?>" data-nama_kriteria="<?=$row->nama_kriteria?>" data-id="<?=$row->id?>" class="btn btn-warning btn-xs btnEditKriteria"><i class="fa fa-pencil"></i></button>
                         <a href="<?=base_url()?>kriteria/detail/<?=$row->id?>" class="btn btn-info btn-xs"><i class="fa fa-search"></i></a>
                         <a onclick="return confirm('Hapus Data?')" href="<?=base_url()?>kriteria/hapus/<?=$row->id?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
                     </td>
@@ -64,6 +66,10 @@
                 <label for="">Nama Penilaian</label>
                 <input type="hidden" name="id" id="id" required>
                 <input type="text" name="nama_kriteria" id="nama_kriteria" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="">Keterangan dibagian input</label>
+                <input type="text" name="keterangan" id="keterangan" required class="form-control">
             </div>
       </div>
       <div class="modal-footer">
