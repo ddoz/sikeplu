@@ -10,7 +10,12 @@ class Front extends CI_Controller {
 	public function index()
 	{
 		$data = array(
-			"page" =>"front/home"
+			"page" =>"front/home",
+			'jadwal' => $this->db->get('jadwal_pengajuan_proposals')->row(),
+			'media'      => $this->db->get('proposals')->num_rows(),
+			'bukti'      => $this->db->get('bukti_tayangs')->num_rows(),
+			'kerjasama'      => $this->db->get_where('proposals', array('status' => 'diterima'))->num_rows(),
+
 		);
 		$this->load->view('front/wrapper',$data);
 	}
@@ -18,15 +23,23 @@ class Front extends CI_Controller {
 	public function tentang()
 	{
 		$data = array(
-			"page" =>"front/home"
+			"page" =>"front/tentang",
+			'cms'      => $this->db->get('cms')->row(),
 		);
 		$this->load->view('front/wrapper',$data);
 	}
 
 	public function daftar_media()
 	{
+
+		$this->db->from('proposals');
+		$this->db->join('tipe_media', 'tipe_media.id=proposals.tipemedia_id');
+		$this->db->where('proposals.status','diterima');
+		$d = $this->db->get()->result();
+
 		$data = array(
-			"page" =>"front/home"
+			"page" =>"front/daftar_media",
+			'media' => $d
 		);
 		$this->load->view('front/wrapper',$data);
 	}
@@ -34,7 +47,8 @@ class Front extends CI_Controller {
 	public function faq()
 	{
 		$data = array(
-			"page" =>"front/home"
+			"page" =>"front/faq",
+			'cms'      => $this->db->get('cms')->row(),
 		);
 		$this->load->view('front/wrapper',$data);
 	}
@@ -42,7 +56,8 @@ class Front extends CI_Controller {
 	public function bantuan()
 	{
 		$data = array(
-			"page" =>"front/home"
+			"page" =>"front/bantuan",
+			'cms'      => $this->db->get('cms')->row(),
 		);
 		$this->load->view('front/wrapper',$data);
 	}
@@ -50,7 +65,8 @@ class Front extends CI_Controller {
 	public function survey()
 	{
 		$data = array(
-			"page" =>"front/home"
+			"page" =>"front/survey",
+			'cms'      => $this->db->get('cms')->row(),
 		);
 		$this->load->view('front/wrapper',$data);
 	}

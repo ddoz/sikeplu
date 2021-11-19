@@ -93,5 +93,24 @@ class Pengguna extends CI_Controller {
         redirect(base_url().'pengguna');
     }
 
+    public function aktivasi() {
+      $id = $this->uri->segment(3);
+      $this->db->where('id',$id);
+			$up = $this->db->update('users',array('email_verified_at'=>date('Y-m-d H:i:s')));
+
+			if($up) {
+				$this->session->set_flashdata('status','<div class="alert alert-info alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Success!</strong> Berhasil aktivasi akun.
+          </div>');
+			}else {
+				$this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Fail!</strong> Gagal aktivasi akun.
+          </div>');
+			}
+      redirect(base_url().'pengguna');
+    }
+
 
 }

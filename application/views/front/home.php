@@ -11,7 +11,7 @@
                 </div>
                 <div class="offset-lg-3 col-lg-6">
                     <div class="center-text">
-                        <p>Saat ini sedang tidak ada jadwal</p>
+                        <?=date('d M Y H:i:s', strtotime(@$jadwal->waktu_mulai));?> Sampai Dengan <?=date('d M Y H:i:s', strtotime(@$jadwal->waktu_selesai));?>
                     </div>
                 </div>
             </div>
@@ -29,19 +29,19 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="count-item decoration-bottom">
-                            <strong>126</strong>
+                            <strong><?=@$media?></strong>
                             <span>Media</span>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="count-item decoration-top">
-                            <strong>63</strong>
+                            <strong><?=@$kerjasama?></strong>
                             <span>Kerjasama</span>
                         </div>
                     </div>
                     <div class="col-lg-4 col-md-6 col-sm-12">
                         <div class="count-item">
-                            <strong>18</strong>
+                            <strong><?=@$bukti?></strong>
                             <span>Penayangan</span>
                         </div>
                     </div>

@@ -9,45 +9,61 @@ class Mailer extends CI_Controller {
      */
     public function lupa_password()
     {
-      // Konfigurasi email
-        $config = [
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'email@gmail.com',  // Email gmail
-            'smtp_pass'   => 'passwordgmail',  // Password gmail
-            'smtp_crypto' => 'ssl',
-            'smtp_port'   => 465,
-            'crlf'    => "\r\n",
-            'newline' => "\r\n"
-        ];
 
-        // Load library email dan konfigurasinya
-        $this->load->library('email', $config);
+        $cek = $this->db->get_where('users', array('email' => $this->input->post('email')));
 
-        // Email dan nama pengirim
-        $this->email->from('no-reply@sikeplu.com', 'Sikeplu.com.com');
+        if($cek->num_rows()>0) {
 
-        // Email penerima
-        $this->email->to('penerima@domain.com'); // Ganti dengan email tujuan
+            $user = $cek->row();
+            // Konfigurasi email
+            $config = [
+                'mailtype'  => 'html',
+                'charset'   => 'utf-8',
+                'protocol'  => 'smtp',
+                'smtp_host' => 'smtp.gmail.com',
+                'smtp_user' => 'sikeplu.mailer@gmail.com',  // Email gmail
+                'smtp_pass'   => 'sikeplu@2021',  // Password gmail
+                'smtp_crypto' => 'ssl',
+                'smtp_port'   => 465,
+                'crlf'    => "\r\n",
+                'newline' => "\r\n"
+            ];
 
-        // Lampiran email, isi dengan url/path file
-        // $this->email->attach('https://images.pexels.com/photos/169573/pexels-photo-169573.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+            // Load library email dan konfigurasinya
+            $this->load->library('email', $config);
 
-        // Subject email
-        $this->email->subject('Kirim Email dengan SMTP Gmail CodeIgniter | MasRud.com');
+            // Email dan nama pengirim
+            $this->email->from('no-reply@sikeplu.com', 'Sikeplu');
 
-        // Isi email
-        $this->email->message("Ini adalah contoh email yang dikirim menggunakan SMTP Gmail pada CodeIgniter.<br><br> Klik <strong><a href='https://masrud.com/kirim-email-smtp-gmail-codeigniter/' target='_blank' rel='noopener'>disini</a></strong> untuk melihat tutorialnya.");
+            // Email penerima
+            $this->email->to($user->email); // Ganti dengan email tujuan
 
-        // Tampilkan pesan sukses atau error
-        if ($this->email->send()) {
-            $this->session->set_flashdata('status','Reset sukses. Silahkan Cek email untuk instruksi lebih lanjut');
-        } else {
-            $this->session->set_flashdata('status','Reset sukses. Silahkan Cek email untuk instruksi lebih lanjut');
-            // $this->session->set_flashdata('status','Reset gagal. Silahkan coba dengan email lainnya.');
+            // Lampiran email, isi dengan url/path file
+            $this->email->attach(base_url()."assets/front/images/logo.png");
+
+            // Subject email
+            $this->email->subject('Reset Password Akun SIKEPLU');
+
+            $passnew = $this->unique_id();
+
+            // Isi email
+            $this->email->message("Form Reset Password<br><b>Password Baru : ".$passnew."</b><br>Silahkan Klik Link dibawah ini untuk melakukan reset Password.<br><br> Klik <strong><a href='".base_url()."welcome/reset_password/".md5($user->email)."/".$passnew."'' target='_blank' rel='noopener'>disini</a></strong> Untuk RESET PASSWORD.");
+
+            // Tampilkan pesan sukses atau error
+            if ($this->email->send()) {
+                $this->session->set_flashdata('status','Reset sukses. Silahkan Cek email untuk instruksi lebih lanjut');
+            } else {
+                $this->session->set_flashdata('status','Reset gagal. Silahkan coba dengan email terdaftar.');
+            }
+        }else {
+            $this->session->set_flashdata('status','Reset gagal. Silahkan coba dengan email yang terdaftar.');
         }
         redirect(base_url()."welcome");
+
     }
+
+    function unique_id($l = 8) {
+        return substr(md5(uniqid(mt_rand(), true)), 0, $l);
+    }
+
 }

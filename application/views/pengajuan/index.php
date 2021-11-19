@@ -83,7 +83,11 @@
                                 <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
                             </div>
                         </div>
-                        <div class="col-md-12">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    
+                <div class="col-md-12">
                             <div class="form-group">
                                 <label>Provinsi</label>
                                 <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
@@ -140,10 +144,6 @@
                                 <?php }?>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <img src="<?=base_url()?>assets/alur_user.png" class="img-responsive img-thumbnail" alt="">
                 </div>
             </div>
 

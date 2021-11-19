@@ -38,7 +38,7 @@
     <?php if(!empty($this->session->flashdata())){ echo "<div class='alert alert-info'><center>".$this->session->flashdata('status')."</center></div>"; } ?>
     <form action="<?=base_url()?>mailer/lupa_password" method="post">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control" placeholder="Email" required name="username">
+        <input type="text" class="form-control" placeholder="Email" required name="email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="row">

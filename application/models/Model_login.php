@@ -13,6 +13,11 @@ class Model_login extends CI_Model {
         if($cekuser->num_rows()>0) {
             $cekuser = $cekuser->row();
             if(password_verify($password,$cekuser->password)) {
+                if($cekuser->user_level == "0") {
+                    if($cekuser->email_verified_at==null) {
+                        return false;
+                    }
+                }
                 $data = array(
                     "userId"        => $cekuser->id,
                     "userName"      => $cekuser->email,
@@ -20,7 +25,7 @@ class Model_login extends CI_Model {
                     "userLevel"    => $cekuser->user_level,
                 );
                 $this->session->set_userdata($data);
-                return true;
+                
             }else {
                 return false;
             }

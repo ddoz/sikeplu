@@ -19,4 +19,18 @@
     </div>
 </div>
 
+
+<div class="box box-secondary">
+    <div class="box-header with-border">
+        ALUR SIKEPLU
+     <div id="info-alert"><?=@$this->session->flashdata('status')?></div>
+    </div>
+    <div class="box-body">
+            <h4>ALUR USER</h4>
+            <img src="<?=base_url()?>assets/alur_user.png" class="img-responsive img-thumbnail" alt="">
+
+       
+    </div>
+</div>
+
 </section>
