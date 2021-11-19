@@ -64,7 +64,7 @@ class Welcome extends CI_Controller {
         $this->email->to($data['email']); // Ganti dengan email tujuan
 
         // Lampiran email, isi dengan url/path file
-        $this->email->attach(base_url()."assets/front/images/logo.png");
+        // $this->email->attach(base_url()."assets/front/images/logo.png");
 
         // Subject email
         $this->email->subject('Aktivasi Akun SIKEPLU');
