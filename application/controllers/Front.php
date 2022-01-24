@@ -11,7 +11,7 @@ class Front extends CI_Controller {
 	{
 		$data = array(
 			"page" =>"front/home",
-			'jadwal' => $this->db->get('jadwal_pengajuan_proposals')->row(),
+			'jadwal' => $this->db->get_where('jadwal_pengajuan_proposals', array('status_jadwal'=>'1'))->row(),
 			'media'      => $this->db->get('proposals')->num_rows(),
 			'bukti'      => $this->db->get('bukti_tayangs')->num_rows(),
 			'kerjasama'      => $this->db->get_where('proposals', array('status' => 'diterima'))->num_rows(),

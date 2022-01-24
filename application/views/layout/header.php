@@ -180,6 +180,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            <li class="<?=(@$link=='jadwal')?'active':''?>"><a href="<?=base_url()?>jadwal"><i class="fa fa-circle-o"></i> Jadwal</a></li>
             <li class="<?=(@$link=='cms')?'active':''?>"><a href="<?=base_url()?>cms"><i class="fa fa-circle-o"></i> CMS</a></li>
             <li class="<?=(@$link=='kriteria')?'active':''?>"><a href="<?=base_url()?>kriteria"><i class="fa fa-circle-o"></i> Kriteria Penilaian</a></li>
             <li class="<?=(@$link=='tipemedia')?'active':''?>"><a href="<?=base_url()?>tipemedia"><i class="fa fa-circle-o"></i> Tipe Media</a></li>

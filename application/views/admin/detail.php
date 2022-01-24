@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Nomor KTP</label>
+                        <label for="">Nomor KTP Pemilik Perusahaan</label>
                         <input type="number" disabled required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
                     </div>
                 </div>
@@ -70,13 +70,13 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Alamat Redaksi 1</label>
+                        <label>Alamat Redaksi</label>
                         <textarea readonly="readonly" disabled name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Alamat Redaksi 2</label>
+                        <label>Alamat Biro</label>
                         <textarea readonly="readonly" disabled name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
                     </div>
                 </div>
@@ -112,19 +112,19 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>No. Rekening</label>
+                        <label>No. Rekening Perusahaan</label>
                         <input type="text" disabled value="<?=@$proposal->nomor_rekenig?>" class="form-control" name="nomor_rekenig" id="nomor_rekenig" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Nama Bank</label>
-                        <input type="text" disabled value="<?=@$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
+                        <input type="text" disabled value="<?=@$proposal->nama_bank==""?"BANK LAMPUNG":$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Upload Rekening</label></br>
+                        <label>Upload Rekening Perusahaan</label></br>
                         <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=@$proposal->upload_rekening?>">Lihat Dokumen</a>
                     </div>
                 </div>

@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nomor KTP</label>
+                                <label for="">Nomor KTP Pemilik Perusahaan</label>
                                 <input type="number" required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
                             </div>
                         </div>
@@ -73,13 +73,13 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Alamat Redaksi 1</label>
+                                <label>Alamat Redaksi</label>
                                 <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Alamat Redaksi 2</label>
+                                <label>Alamat Biro</label>
                                 <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
                             </div>
                         </div>
@@ -125,19 +125,19 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>No. Rekening</label>
+                                <label>No. Rekening Perusahaan</label>
                                 <input type="text" value="<?=@$proposal->nomor_rekening?>" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Nama Bank</label>
-                                <input type="text" value="<?=@$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
+                                <input type="text" readonly value="<?=@$proposal->nama_bank==""?"BANK LAMPUNG":$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Upload Rekening</label>
+                                <label>Upload Rekening Perusahaan</label>
                                 <input <?php  if(@$proposal->upload_rekening==null){ echo 'required'; }?> type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening">
                                 <?php if(@$proposal->upload_rekening!=null){ ?>
                                 <a href="<?=base_url()?>berkas/proposal/<?=$proposal->upload_rekening?>">Lihat Dokumen</a>
@@ -197,13 +197,13 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Kartu Identitas PIC (JPG *1MB)
+                                <th>Kartu Identitas PIC (PDF *1MB)
 
                             
                                 </th>
                                 
                                 <td>
-                                    <input type="file" name="kartu_identitas_pic" accept=".jpg,.png" class="form-control">
+                                    <input type="file" name="kartu_identitas_pic" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->kartu_identitas_pic!="") { ?>
                                     <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->kartu_identitas_pic?>" alt="">
                                     <?php }?>
@@ -343,9 +343,9 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>NPWP (JPG *1MB)</th>
+                                <th>NPWP (PDF *1MB)</th>
                                 <td>
-                                    <input type="file" name="npwp" accept=".jpg,.png" class="form-control">
+                                    <input type="file" name="npwp" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->npwp!="") { ?>
                                         <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">
                                     <?php }?>
@@ -399,7 +399,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikat Dewan PERS (PDF *1MB)</th>
+                                <th>Sertifikat Dewan PERS (PDF *1MB) (OPSIONAL)</th>
                                 <td>
                                     <input type="file" name="sertifikat_dewan_pers" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->sertifikat_dewan_pers!="") { ?>
