@@ -74,17 +74,17 @@ class Welcome extends CI_Controller {
 
         // Tampilkan pesan sukses atau error
         if ($this->email->send()) {
-            $this->session->set_flashdata('status','Reset sukses. Silahkan Cek email untuk instruksi lebih lanjut');
+            $this->session->set_flashdata('status','Registrasi sukses. Silahkan Cek email untuk instruksi lebih lanjut');
 			
 			if($this->db->insert('users',$data)) {
 
-				$this->session->set_flashdata('status','Signup sukses. Silahkan  Cek email untuk instruksi lebih lanjut');
+				$this->session->set_flashdata('status','Registrasi sukses. Silahkan  Cek email untuk instruksi lebih lanjut');
 			}else {
-				$this->session->set_flashdata('status','Signup gagal. Silahkan coba dengan username lainnya.');
+				$this->session->set_flashdata('status','Registrasi gagal. Silahkan coba dengan username lainnya.');
 			}
         } else {
             // $this->session->set_flashdata('status','Reset sukses. Silahkan Cek email untuk instruksi lebih lanjut');
-            $this->session->set_flashdata('status','Reset gagal. Silahkan coba dengan email lainnya.');
+            $this->session->set_flashdata('status','Registrasi gagal. Silahkan coba dengan email lainnya.');
         }
 		
 
