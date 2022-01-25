@@ -8,7 +8,7 @@
                     </div>
                 </div>
                 <div class="offset-lg-3 col-lg-6">
-                    <?=@$cms->bantuan?>
+                    <?=@$cms->survey?>
                 </div>
             </div>
             <!-- ***** Section Title End ***** -->
