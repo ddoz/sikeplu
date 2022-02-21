@@ -73,23 +73,42 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Alamat Redaksi</label>
-                                <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
+                                <label>Provinsi Redaksi</label>
+                                <input type="text" value="<?=@explode('_',@$proposal->provinsi_redaksi)[1]?>" readonly disabled class="form-control">
+                                <select name="provinsi_redaksi" id="provinsi_redaksi" class="form-control selectUser" style="width:100%">
+                                    <option value="">Pilih</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Alamat Biro</label>
-                                <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
+                                <label>Kota Redaksi</label>
+                                <input type="text" value="<?=@$proposal->kota_redaksi?>" readonly disabled class="form-control">
+                                <select name="kota_redaksi" id="kota_redaksi" class="form-control selectUser" style="width:100%">
+                                    <option value="">Pilih</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Alamat Redaksi</label>
+                                <textarea name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_map_redaksi">Pointing MAP</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kode POS Redaksi</label>
+                                <input type="text" value="<?=@$proposal->kode_pos_redaksi?>" class="form-control" name="kode_pos_redaksi" id="kode_pos_redaksi" required>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6">
                     
-                <div class="col-md-12">
+                        <div class="col-md-12">
                             <div class="form-group">
-                                <label>Provinsi</label>
+                                <label>Provinsi Biro</label>
                                 <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
                                 <select name="provinsi" id="provinsi" class="form-control selectUser" style="width:100%">
                                     <option value="">Pilih</option>
@@ -98,7 +117,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Kota</label>
+                                <label>Kota Biro</label>
                                 <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
                                 <select name="kota" id="kota" class="form-control selectUser" style="width:100%">
                                     <option value="">Pilih</option>
@@ -107,7 +126,14 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Kode POS</label>
+                                <label>Alamat Biro</label>
+                                <textarea name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_map">Pointing MAP</button>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Kode POS Biro</label>
                                 <input type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
                             </div>
                         </div>
@@ -509,3 +535,62 @@
 
 
 </section>
+
+
+<!-- Modal -->
+<div id="modal_map_redaksi" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <form action="<?=base_url()?>pengajuan/updatelokasiredaksi" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Form Pointing Map Redaksi</h4>
+      </div>
+      <div class="modal-body">
+        <div class="map_container">
+            <div id="mapRedaksi"></div>
+            <input type="hidden" name="id" value="<?=@$proposal->id?>">
+            <input type="hidden" name="latitude_redaksi" id="latitude_redaksi">
+            <input type="hidden" name="longitude_redaksi" id="longitude_redaksi">
+        </div>
+      </div>
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Update Lokasi</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</form>
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="modal_map" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <form action="<?=base_url()?>pengajuan/updatelokasibiro" method="post">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Form Pointing Map Biro</h4>
+      </div>
+      <div class="modal-body">
+        <div class="map_container">
+            <div id="mapBiro"></div>
+            <input type="hidden" name="id" value="<?=@$proposal->id?>">
+            <input type="hidden" name="latitude" id="latitude">
+            <input type="hidden" name="longitude" id="longitude">
+        </div>
+      </div>
+      <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Update Lokasi</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+</form>
+
+  </div>
+</div>

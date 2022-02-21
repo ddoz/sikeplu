@@ -33,6 +33,9 @@ class Model_upload extends CI_Model {
             'provinsi'=>$this->input->post('provinsi'),
             'kota'=>$this->input->post('kota'),
             'kode_pos'=>$this->input->post('kode_pos'),
+            'provinsi_redaksi'=>$this->input->post('provinsi_redaksi'),
+            'kota_redaksi'=>$this->input->post('kota_redaksi'),
+            'kode_pos_redaksi'=>$this->input->post('kode_pos_redaksi'),
             'email_redaksi'=>$this->input->post('email_redaksi'),
             'kontak_redaksi'=>$this->input->post('kontak_redaksi'),
             'website'=>$this->input->post('website'),
@@ -144,6 +147,7 @@ class Model_upload extends CI_Model {
             'alamat_redaksi_1'=>$this->input->post('alamat_redaksi_1'),
             'alamat_redaksi_2'=>$this->input->post('alamat_redaksi_2'),
             'kode_pos'=>$this->input->post('kode_pos'),
+            'kode_pos_redaksi'=>$this->input->post('kode_pos_redaksi'),
             'email_redaksi'=>$this->input->post('email_redaksi'),
             'kontak_redaksi'=>$this->input->post('kontak_redaksi'),
             'website'=>$this->input->post('website'),
@@ -157,6 +161,13 @@ class Model_upload extends CI_Model {
         }
         if($row->kota!=$this->input->post('kota')  && $this->input->post('kota')!="") {
             $insert['kota'] = $this->input->post('kota');
+        }
+
+        if($row->provinsi_redaksi!=$this->input->post('provinsi_redaksi') && $this->input->post('provinsi_redaksi')!="") {
+            $insert['provinsi_redaksi'] = $this->input->post('provinsi_redaksi');
+        }
+        if($row->kota_redaksi!=$this->input->post('kota_redaksi')  && $this->input->post('kota_redaksi')!="") {
+            $insert['kota_redaksi'] = $this->input->post('kota_redaksi');
         }
 
         if ($this->upload->do_upload('upload_rekening')) {

@@ -50,6 +50,24 @@ class Pengajuan extends CI_Controller {
 		$this->load->view('layout/template',$data);
     }
 
+    public function updatelokasibiro() {
+        $id = $this->input->post('id');
+        $latitude = $this->input->post('latitude');
+        $longitude = $this->input->post('longitude');
+        $this->db->where('id',$id);
+        $this->db->update("proposals",array("latitude"=>$latitude,"longitude"=>$longitude));
+        redirect(base_url() ."pengajuan");
+    }
+
+    public function updatelokasiredaksi() {
+        $id = $this->input->post('id');
+        $latitude = $this->input->post('latitude_redaksi');
+        $longitude = $this->input->post('longitude_redaksi');
+        $this->db->where('id',$id);
+        $this->db->update("proposals",array("latitude_redaksi"=>$latitude,"longitude_redaksi"=>$longitude));
+        redirect(base_url() ."pengajuan");
+    }
+
     public function save() {
 
         //cek apakah sudah ada insert data
