@@ -170,8 +170,13 @@
       <ul class="sidebar-menu" data-widget="tree">
         <!--<li class="header">MAIN NAVIGATION</li>-->
 			  <li class="<?=(@$link=='home')?'active':''?>"><a href="<?php echo base_url();?>home"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
+        <?php if($this->session->userdata('userLevel')=="2") { ?>
+          <li class="<?=(@$link=='adminmedia')?'active':''?>"><a href="<?php echo base_url();?>adminmedia"><i class="fa fa-list"></i> <span>Data Media</span></a></li>
+          <li class="<?=(@$link=='adminordermedia')?'active':''?>"><a href="<?php echo base_url();?>adminordermedia"><i class="fa fa-send"></i> <span>Order Media</span></a></li>
+        <?php }?>
         <?php if($this->session->userdata('userLevel')=="1") { ?>
         <li class="<?=(@$link=='adminpengajuan')?'active':''?>"><a href="<?php echo base_url();?>adminpengajuan"><i class="fa fa-list"></i> <span>Data Pengajuan</span></a></li>
+        <li class="<?=(@$link=='adminordermedia')?'active':''?>"><a href="<?php echo base_url();?>adminordermedia"><i class="fa fa-send"></i> <span>Order Media</span></a></li>
         <li class="<?=(@$link_t=='master')?'active menu-open':''?>  treeview">
           <a href="#">
             <i class="fa fa-gear"></i>
@@ -191,7 +196,7 @@
         <?php }?>
         <?php if($this->session->userdata('userLevel')=="0") { ?>
         <li class="<?=(@$link=='pengajuan')?'active':''?>"><a href="<?php echo base_url();?>pengajuan"><i class="fa fa-send"></i> <span>Kelengkapan Data</span></a></li>
-       
+        <li class="<?=(@$link=='ordermedia')?'active':''?>"><a href="<?php echo base_url();?>ordermedia"><i class="fa fa-list"></i> <span>Order Media</span></a></li>
         <li class="<?=(@$link_t=='data')?'active menu-open':''?>  treeview">
             <a href="#">
               <i class="fa fa-list"></i>

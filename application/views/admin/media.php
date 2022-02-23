@@ -39,8 +39,7 @@
                     <td><?=$row->nama_pic?></td>
                     <td><?=$row->status?></td>
                     <td>
-                        <a href="<?=base_url()?>adminpengajuan/form/<?=$row->id?>" class="btn btn-warning btn-xs"><i class="fa fa-search"></i> Lihat Detail</a>
-                        <button onclick="var w = confirm('Hapus Data Ini?'); if(w){ window.location.href='<?=base_url()?>adminpengajuan/delete/<?=$row->id?>'; }" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i> Hapus Data</button>
+                        <a href="<?=base_url()?>adminmedia/form/<?=$row->id?>" class="btn btn-warning btn-xs"><i class="fa fa-search"></i> Lihat Detail</a>
                     </td>
                 </tr>
             <?php }}?>

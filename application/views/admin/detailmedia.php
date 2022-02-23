@@ -10,7 +10,7 @@
 <section class="content">
 <div class="box box-secondary">
     <div class="box-header with-border">
-        Form untuk Submit / Upload.
+        Data Lengkap.
      <div id="info-alert"><?=$this->session->flashdata('status')?></div>
     </div>
     <div class="box-body">
@@ -72,41 +72,37 @@
                     <div class="form-group">
                         <label>Provinsi Redaksi</label>
                         <input type="text" value="<?=@explode('_',@$proposal->provinsi_redaksi)[1]?>" readonly disabled class="form-control">
-                       
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Kota Redaksi</label>
                         <input type="text" value="<?=@$proposal->kota_redaksi?>" readonly disabled class="form-control">
-        
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Alamat Redaksi</label>
-                        <textarea readonly="readonly" disabledname="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
+                        <textarea readonly name="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_map_redaksi">Pointing MAP</button>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Kode POS Redaksi</label>
-                        <input readonly="readonly" disabledtype="text" value="<?=@$proposal->kode_pos_redaksi?>" class="form-control" name="kode_pos_redaksi" id="kode_pos_redaksi" required>
+                        <input readonly type="text" value="<?=@$proposal->kode_pos_redaksi?>" class="form-control" name="kode_pos_redaksi" id="kode_pos_redaksi" required>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Provinsi Biro</label>
                         <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
-                        
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Kota Biro</label>
                         <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
-                       
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -119,7 +115,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Kode POS Biro</label>
-                        <input readonly="readonly" disabledtype="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
+                        <input readonly type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -203,11 +199,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="akta_perusahaan_ket" id="akta_perusahaan_ket" cols="30" rows="10" class="form-control"><?=@$proposal->akta_perusahaan_ket?></textarea>
+                                    <textarea readonly name="akta_perusahaan_ket" id="akta_perusahaan_ket" cols="30" rows="10" class="form-control"><?=@$proposal->akta_perusahaan_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-akta_perusahaan"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-akta_perusahaan"><i class="fa fa-remove"></i> Tolak</button>
+                                   
                                 </td>
                             </tr>
                             <tr <?php if(@$proposal->kartu_identitas_pic_status=="1") { ?>
@@ -228,11 +223,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="kartu_identitas_pic_ket" id="kartu_identitas_pic_ket" cols="30" rows="10" class="form-control"><?=@$proposal->kartu_identitas_pic_ket?></textarea>
+                                    <textarea readonly name="kartu_identitas_pic_ket" id="kartu_identitas_pic_ket" cols="30" rows="10" class="form-control"><?=@$proposal->kartu_identitas_pic_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-kartu_identitas_pic"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-kartu_identitas_pic"><i class="fa fa-remove"></i> Tolak</button>
+                                   
                                 </td>
                             </tr>
                             <tr
@@ -251,12 +245,11 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea  name="sk_pic_ket" id="sk_pic_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sk_pic_ket?></textarea>
+                                    <textarea readonly  name="sk_pic_ket" id="sk_pic_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sk_pic_ket?></textarea>
                                 </td>
                                 <td>
 
-                                    <button class="btn btn-success" type="submit" name="check" value="1-sk_pic"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-sk_pic"><i class="fa fa-remove"></i> Tolak</button>
+                                    
                                 </td>
                             </tr>
                             <tr
@@ -274,11 +267,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="surat_permohonan_kerjasama_ket" id="surat_permohonan_kerjasama_ket" cols="30" rows="10" class="form-control"><?=@$proposal->surat_permohonan_kerjasama_ket?></textarea>
+                                    <textarea readonly name="surat_permohonan_kerjasama_ket" id="surat_permohonan_kerjasama_ket" cols="30" rows="10" class="form-control"><?=@$proposal->surat_permohonan_kerjasama_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-surat_permohonan_kerjasama"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-surat_permohonan_kerjasama"><i class="fa fa-remove"></i> Tolak</button>
+                                   
                                 </td>
                             </tr>
                             <tr
@@ -296,11 +288,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="proposal_penawaran_ket" id="proposal_penawaran_ket" cols="30" rows="10" class="form-control"><?=@$proposal->proposal_penawaran_ket?></textarea>
+                                    <textarea readonly name="proposal_penawaran_ket" id="proposal_penawaran_ket" cols="30" rows="10" class="form-control"><?=@$proposal->proposal_penawaran_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-proposal_penawaran"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-proposal_penawaran"><i class="fa fa-remove"></i> Tolak</button>
+                                
                                 </td>
                             </tr>
                             <tr
@@ -318,11 +309,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="siup_situ_ket" id="siup_situ_ket" cols="30" rows="10" class="form-control"><?=@$proposal->siup_situ_ket?></textarea>
+                                    <textarea readonly name="siup_situ_ket" id="siup_situ_ket" cols="30" rows="10" class="form-control"><?=@$proposal->siup_situ_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-siup_situ"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-siup_situ"><i class="fa fa-remove"></i> Tolak</button>
+                                   
                                 </td>
                             </tr>
                             <tr
@@ -340,11 +330,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="npwp_ket" id="npwp_ket" cols="30" rows="10" class="form-control"><?=@$proposal->npwp_ket?></textarea>
+                                    <textarea readonly name="npwp_ket" id="npwp_ket" cols="30" rows="10" class="form-control"><?=@$proposal->npwp_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-npwp"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-npwp"><i class="fa fa-remove"></i> Tolak</button>
+                                    
                                 </td>
                             </tr>
                             <tr
@@ -362,11 +351,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="sertifikat_kemenkumham_ket" id="sertifikat_kemenkumham_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_kemenkumham_ket?></textarea>
+                                    <textarea readonly name="sertifikat_kemenkumham_ket" id="sertifikat_kemenkumham_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_kemenkumham_ket?></textarea>
                                 </td>
                                 <td>
-                                    <button class="btn btn-success" type="submit" name="check" value="1-sertifikat_kemenkumham"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-sertifikat_kemenkumham"><i class="fa fa-remove"></i> Tolak</button>
+                                   
                                 </td>
                             </tr>
                             <tr
@@ -384,11 +372,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="sertifikat_dewan_pers_ket" id="sertifikat_dewan_pers_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_dewan_pers_ket?></textarea>
+                                    <textarea readonly name="sertifikat_dewan_pers_ket" id="sertifikat_dewan_pers_ket" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_dewan_pers_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-sertifikat_dewan_pers"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-sertifikat_dewan_pers"><i class="fa fa-remove"></i> Tolak</button>
+                                
                                 </td>
                             </tr>
                             <tr
@@ -406,11 +393,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="spt_tahun_terakhir_ket" id="spt_tahun_terakhir_ket" cols="30" rows="10" class="form-control"><?=@$proposal->spt_tahun_terakhir_ket?></textarea>
+                                    <textarea readonly name="spt_tahun_terakhir_ket" id="spt_tahun_terakhir_ket" cols="30" rows="10" class="form-control"><?=@$proposal->spt_tahun_terakhir_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-spt_tahun_terakhir"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-spt_tahun_terakhir"><i class="fa fa-remove"></i> Tolak</button>
+                                
                                 </td>
                             </tr>
                             <tr
@@ -428,11 +414,10 @@
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea name="surat_domisili_kantor_biro_ket" id="surat_domisili_kantor_biro_ket" cols="30" rows="10" class="form-control"><?=@$proposal->surat_domisili_kantor_biro_ket?></textarea>
+                                    <textarea readonly name="surat_domisili_kantor_biro_ket" id="surat_domisili_kantor_biro_ket" cols="30" rows="10" class="form-control"><?=@$proposal->surat_domisili_kantor_biro_ket?></textarea>
                                 </td>
                                 <td>
-                                <button class="btn btn-success" type="submit" name="check" value="1-surat_domisili_kantor_biro"><i class="fa fa-check"></i> Terima</button>
-                                    <button class="btn btn-danger"type="submit" name="check" value="9-surat_domisili_kantor_biro"><i class="fa fa-remove"></i> Tolak</button>
+                                
                                 </td>
                             </tr>
                         </table>
@@ -454,12 +439,6 @@
                                     <input type="hidden" name="kriteria_id[]" value="<?=$ck['id_kriteria']?>">
                                 </th>
                                 <th>
-                                    <select name="kriteriadetail_id[]" id="" class="form-control">
-                                        <option value="">Pilih</option>
-                                        <?php foreach($ck['detail'] as $cd){ ?>
-                                            <option <?=($cd['id']==$ck['pilih'])?"selected":""?> value="<?=$cd['id']."_".$cd['nilai']?>"><?=$cd['nama_nilai']?></option>
-                                        <?php }?>
-                                    </select>
                                     <?php if($ck['file']!=""){ ?>
                                     <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=$ck['file']?>">Lihat Dokumen</a>
                                     <?php }else { echo "Tidak Upload Dokumen"; } ?>
@@ -469,19 +448,19 @@
                                 </th>
                             </tr>
                     <?php } ?> 
-                    <tr class="bg-info">
+                    <!-- <tr class="bg-info">
                         <th colspan="2">Total Nilai</th>
                         <th><?=$nilai?></th>
                     </tr>
                     <tr class="bg-info">
                         <th colspan="2">Total Uang</th>
                         <th>Rp. <?=number_format(lihatNilaiFormula($proposal->tipemedia_id,$nilai))?></th>
-                    </tr>
+                    </tr> -->
                     </table>
                     </div>
                     <?php }?>
                     <div class="form-group col-md-6">
-                        <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Simpan</button>
+                       
                     </div>
                     </form>
                 </div>
@@ -569,8 +548,7 @@ function lihatNilaiFormula($tipemedia=0,$hasil=0) {
             <form action="">
                 <div class="form-group">
                     <label for="">Status Saat ini Adalah : <?=strtoupper($proposal->status)?></label>
-                    <a onclick="return confirm('Terima DATA?')" href="<?=base_url()?>adminpengajuan/approve/<?=$proposal->id?>" class="btn btn-success pull-right"><span class="fa fa-check"></span> Terima</a>
-                    <a onclick="return confirm('Tolak DATA?')" href="<?=base_url()?>adminpengajuan/decline/<?=$proposal->id?>"  class="btn btn-danger pull-right"><span class="fa fa-remove"></span> Tolak</a>
+                   
                 </div>
             </form>
     </div>

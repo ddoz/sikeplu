@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nomor KTP Pemilik Perusahaan</label>
+                                <label for="">Nomor KTP Biro Lampung Utara</label>
                                 <input type="number" required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
                             </div>
                         </div>
@@ -139,19 +139,19 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Email Perusahaan</label>
+                                <label>Email Biro</label>
                                 <input type="text" value="<?=@$proposal->email_redaksi?>" class="form-control" name="email_redaksi" id="email_redaksi" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>No. Telp/HP Perusahaan</label>
+                                <label>No. Telp/HP Biro</label>
                                 <input type="text" value="<?=@$proposal->kontak_redaksi?>" class="form-control" name="kontak_redaksi" id="kontak_redaksi" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>No. Rekening Perusahaan</label>
+                                <label>No. Rekening Biro</label>
                                 <input type="text" value="<?=@$proposal->nomor_rekening?>" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
                             </div>
                         </div>
@@ -163,7 +163,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Upload Rekening Perusahaan</label>
+                                <label>Upload Rekening Biro</label>
                                 <input <?php  if(@$proposal->upload_rekening==null){ echo 'required'; }?> type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening">
                                 <?php if(@$proposal->upload_rekening!=null){ ?>
                                 <a href="<?=base_url()?>berkas/proposal/<?=$proposal->upload_rekening?>">Lihat Dokumen</a>
@@ -467,6 +467,34 @@
                                 <?php if(@$proposal->spt_tahun_terakhir_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->spt_tahun_terakhir_status=="0") { ?>
+                                        <i class="fa fa-minus"></i>
+                                    <?php }else { ?>
+                                        <i class="fa fa-remove text-danger"></i>
+                                    <?php }?>
+                                </td>
+                            </tr>
+                            <tr
+                            <?php if(@$proposal->sertifikat_dewan_pers_status=="1") { ?>
+                                class="bg-success"
+                                <?php }else if(@$proposal->sertifikat_dewan_pers_status=="0") { ?>
+                                    class="bg-secondary"
+                                <?php }else { ?>
+                                    class="bg-danger"
+                                <?php }?>>
+                                <th>Surat Domisili Kantor Biro di Lampung Utara (PDF *1MB)</th>
+                                <td>
+                                    <input type="file" name="surat_domisili_kantor_biro" accept=".pdf" class="form-control">
+                                    <?php if(@$proposal->surat_domisili_kantor_biro!="") { ?>
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->surat_domisili_kantor_biro?>">Lihat Berkas</a>
+                                    <?php }?>
+                                </td>
+                                <td>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                </td>
+                                <td>
+                                <?php if(@$proposal->surat_domisili_kantor_biro_status=="1") { ?>
+                                    <i class="fa fa-check text-success"></i>
+                                    <?php }else if(@$proposal->surat_domisili_kantor_biro_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
                                     <?php }else { ?>
                                         <i class="fa fa-remove text-danger"></i>

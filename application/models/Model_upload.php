@@ -114,6 +114,12 @@ class Model_upload extends CI_Model {
             $response['status'] = false;
             $response['message'] = 'Format File atau ukuran SPT Tahun Terakhir tidak sesuai dengan ketentuan.';
         }
+        if ($this->upload->do_upload('surat_domisili_kantor_biro')) {
+            $insert['surat_domisili_kantor_biro'] = $this->upload->data("file_name");
+        } else {
+            $response['status'] = false;
+            $response['message'] = 'Format File atau ukuran Surat Domisili Kantor Biro di Lampung Utara tidak sesuai dengan ketentuan.';
+        }
 
         $cekNPWP = $this->db->get_where('proposals',array('nomor_npwp'=>$insert['nomor_npwp'],'user_id!='=>$this->session->userdata('userId')));
         if($cekNPWP->num_rows() > 1) {
@@ -264,6 +270,14 @@ class Model_upload extends CI_Model {
             } else {
                 $response['status'] = false;
                 $response['message'] = 'Format File atau ukuran SPT Tahun Terakhir tidak sesuai dengan ketentuan.';
+            }
+        }
+        if(!empty($_FILES['surat_domisili_kantor_biro']['name'])) {
+            if ($this->upload->do_upload('surat_domisili_kantor_biro')) {
+                $insert['surat_domisili_kantor_biro'] = $this->upload->data("file_name");
+            } else {
+                $response['status'] = false;
+                $response['message'] = 'Format File atau ukuran Surat Domisili Kantor Biro di Lampung Utara tidak sesuai dengan ketentuan.';
             }
         }
 
