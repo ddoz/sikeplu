@@ -11,6 +11,13 @@ class Model_upload extends CI_Model {
     }
     
     function store() {
+
+        if($this->ceknikdanemal($this->input->post('nomor_ktp'),$this->input->post('email_redaksi'))) { 
+            $response['status'] = false;
+            $response['message'] = 'No KTP dan Email sudah digunakan.';
+            return $response;
+            exit();
+        }
         
         $config['upload_path']          = './berkas/proposal/';
         $config['allowed_types']        = 'jpg|png|jpeg|pdf|PDF';
@@ -126,7 +133,20 @@ class Model_upload extends CI_Model {
 
     }
 
+    function ceknikdanemal($nik,$email) {
+        if ($this->db->get_where('proposals', array("nomor_ktp"=>$nik,"email_redaksi"=>$email))->num_rows()>0) {
+            return true;
+        }
+    }
+
     function update($row) {
+
+        if($this->ceknikdanemal($this->input->post('nomor_ktp'),$this->input->post('email_redaksi'))) { 
+            $response['status'] = false;
+            $response['message'] = 'No KTP dan Email sudah digunakan.';
+            return $response;
+            exit();
+        }
         
         $config['upload_path']          = './berkas/proposal/';
         $config['allowed_types']        = 'jpg|png|jpeg|pdf|PDF';
