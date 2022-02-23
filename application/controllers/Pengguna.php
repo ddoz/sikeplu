@@ -39,6 +39,7 @@ class Pengguna extends CI_Controller {
             "password"          => password_hash($this->input->post('password'),PASSWORD_DEFAULT),
             "name"       => $this->input->post('name'),
             "user_level"            => $this->input->post('level'),
+            "email_verified_at"     => date('Y-m-d H:i:s'),
             "created_at"     => date('Y-m-d H:i:s'),
             "updated_at"     => date('Y-m-d H:i:s'),
         );
