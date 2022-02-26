@@ -44,6 +44,11 @@
                                     <input name="value[]" type="<?=$arr_tipe[$f->tipe]?>" class="form-control <?=($f->tipe=='date')?"datepicker":""?>" required>
                                 </div>
                             <?php }?>
+                            <div class="form-group">
+                                <div class="checkbox-inline">
+                                <label><input type="checkbox" name="cheklist" required>Dengan ini SAYA menyatakan bahwa seluruh data yang di unggah diatas adalah BENAR dan bukan hasil REKAYASA serta memastikan link atau bukti tayang tidak akan pernah hilang atau rusak.</label>
+                                </div>
+                            </div>
                             
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary form-control">Simpan</button>

@@ -165,6 +165,13 @@
                                 <?php }?>
                             </div>
                         </div>
+                        <div class="col-md-12">
+                        <div class="form-group">
+                                <div class="checkbox-inline">
+                                <label><input type="checkbox" name="cheklist" required>Dengan ini SAYA menyatakan bahwa seluruh data yang di unggah diatas adalah BENAR dan bukan hasil REKAYASA dan SAYA bertanggung jawab penuh atas seluruh data yang SAYA unggah.</label>
+                                </div>
+                            </div>
+                        </div>
                 </div>
             </div>
 
