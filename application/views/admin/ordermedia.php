@@ -41,7 +41,7 @@
                     <td><?=$i++?></td>
                     <td><?=$row->nama_media?> | Total Order Diterima : (<?=getJumlahOrder($row->id_proposal)?>)</td>
                     <td><?=$row->keterangan_order?></td>
-                    <td><a href="<?=base_url()?>berkas/proposal/<?=$row->surat_order?>"><i class="fa fa-download"></i></a> </td>
+                    <td><a href="<?=base_url()?>berkas/sk/<?=$row->surat_order?>"><i class="fa fa-download"></i></a> </td>
                     <td><?=$array_status[$row->status_order]?></td>
                     <td><?=$row->created_at?></td>
                     <td>

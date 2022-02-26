@@ -15,7 +15,7 @@ class File extends CI_Controller {
         if($file->num_rows()>0) {
             $f = $file->row();
             if($f->surat_order!='') {
-                force_download(base_url().'/'.$file->surat_order, NULL);
+                force_download(base_url().'/berkas/sk/'.$file->surat_order, NULL);
             }else {
                 echo "Surat tidak tersedia. Silahkan <a href='".base_url()."welcome'> Login </a> untuk melihat data lengkap pada menu Order Media.";
             }

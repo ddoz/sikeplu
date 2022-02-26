@@ -38,7 +38,7 @@
                     <td><?=$i++?></td>
                     <td><?=$row->nama_media?></td>
                     <td><?=$row->keterangan_order?></td>
-                    <td><a href="<?=base_url()?>berkas/proposal/<?=$row->surat_order?>"><i class="fa fa-download"></i></a> </td>
+                    <td><a href="<?=base_url()?>berkas/sk/<?=$row->surat_order?>"><i class="fa fa-download"></i></a> </td>
                     <td><?=$row->created_at?></td>
                     <th>
                         <a href="<?=base_url()?>dataupload/list/<?=$row->id_media?>/<?=$row->id?>" class="btn btn-primary btn-xs">Upload Bukti Tayang</a>

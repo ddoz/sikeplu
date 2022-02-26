@@ -64,7 +64,7 @@ class Adminordermedia extends CI_Controller {
       redirect(base_url()."adminordermedia");
     }
 
-    $config['upload_path']          = './berkas/proposal/';
+    $config['upload_path']          = './berkas/sk/';
     $config['allowed_types']        = 'jpg|png|jpeg|pdf|PDF';
     $config['max_size']             = 2048; // 1MB
     $config['encrypt_name']         = true;
