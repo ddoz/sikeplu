@@ -41,7 +41,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="">
+  <a href="<?=base_url()?>">
       <img src="<?=base_url()?>assets/kominfo.png" width="30" alt="">
       
     <b>SIKEPLU</b>

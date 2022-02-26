@@ -33,6 +33,23 @@ class Welcome extends CI_Controller {
 	}
 
 	public function signup() {
+
+		$jadwal = $this->db->get_where('jadwal_pengajuan_proposals',array("status_jadwal"=>"1"));
+
+		if($jadwal->num_rows()==0) {
+			$this->session->set_flashdata('status','Registrasi gagal. Periode Pendaftaran Belum Ada.');
+			redirect(base_url()."welcome/register");
+		}
+
+		$time = strtotime(date("Y-m-d H:i:s"));
+		$waktu_mulai = strtotime($jadwal->row()->waktu_mulai);
+		$waktu_selesai = strtotime($jadwal->row()->waktu_selesai);
+		
+		if(($time <= $waktu_mulai)||($time >= $waktu_selesai)) {
+			$this->session->set_flashdata('status','Registrasi gagal. Periode Pendaftaran Belum Dimulai atau Sudah Melewati Waktu Pendaftaran. Silahkan Lakukan Pendaftaran Pada Waktu Yang Ditentukan.');
+			redirect(base_url()."welcome/register");
+		}
+
 		$data = [
 			"name" => $this->input->post("nama_lengkap"),
 			"email" => $this->input->post("username"),

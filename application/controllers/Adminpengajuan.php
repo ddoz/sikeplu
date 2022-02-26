@@ -133,13 +133,18 @@ class Adminpengajuan extends CI_Controller {
   }
 
   public function approve() {
-    $this->db->where('id',$this->uri->segment(3));
-    $this->db->update('proposals',array('status'=>'diterima'));
+
+    $id = $this->input->post('id_proposal');
+    $status = ($this->input->post('submit')=="terima") ? "diterima" : "ditolak";
+    $keterangan = $this->input->post('keterangan_proposal');
+
+    $this->db->where('id',$id);
+    $this->db->update('proposals',array('status'=>$status,'keterangan'=>$keterangan));
     $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Success!</strong> Berhasil update data.
       </div>');
-      redirect(base_url()."adminpengajuan/form/".$this->uri->segment(3));
+      redirect(base_url()."adminpengajuan/form/".$id);
   }
 
   public function decline() {

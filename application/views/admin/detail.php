@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Nomor NPWP</label>
+                        <label for="">Nomor NPWP Perusahaan</label>
                         <input type="number" disabled required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
                     </div>
                 </div>
@@ -54,12 +54,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Jabatan</label>
-                        <select disabled readonly name="jabatan_pic" id="jabatan_pic" required class="form-control">
-                            <option value="">Pilih</option>
-                        <?php foreach($jabatan as $jbt) { ?>
-                            <option <?=@$proposal->jabatan_pic==$jbt->id?"selected":""?> value="<?=$jbt->id?>"><?=$jbt->nama_jabatan?></option>
-                        <?php }?>
-                        </select>
+                        <input type="text" value="<?=@$proposal->jabatan_pic?>" name="jabatan_pic" id="jabatan_pic" readonly class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -166,7 +161,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label>Upload Rekening Biro</label></br>
+                        <label>Upload Buku Rekening</label></br>
                         <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=@$proposal->upload_rekening?>">Lihat Dokumen</a>
                     </div>
                 </div>
@@ -217,7 +212,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Kartu Identitas PIC (JPG *1MB)
+                                <th>Kartu Identitas Penanggung Jawab (JPG *1MB)
 
                             
                                 </th>
@@ -333,7 +328,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>NPWP (JPG *1MB)</th>
+                                <th>NPWP Perusahaan (JPG *1MB)</th>
                                 <td>
                                     <?php if(@$proposal->npwp!="") { ?>
                                         <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">
@@ -566,13 +561,17 @@ function lihatNilaiFormula($tipemedia=0,$hasil=0) {
     </div>
 
     <div class="box-footer">
-            <form action="">
                 <div class="form-group">
-                    <label for="">Status Saat ini Adalah : <?=strtoupper($proposal->status)?></label>
-                    <a onclick="return confirm('Terima DATA?')" href="<?=base_url()?>adminpengajuan/approve/<?=$proposal->id?>" class="btn btn-success pull-right"><span class="fa fa-check"></span> Terima</a>
-                    <a onclick="return confirm('Tolak DATA?')" href="<?=base_url()?>adminpengajuan/decline/<?=$proposal->id?>"  class="btn btn-danger pull-right"><span class="fa fa-remove"></span> Tolak</a>
+                    <label for="">Status Saat ini Adalah : <?=strtoupper($proposal->status)?></label><br>
+                    <label for="">Keterangan : <?=strtoupper($proposal->keterangan)?></label>
+                    <hr>
+                    <form method="POST" action="<?=base_url()?>adminpengajuan/approve">
+                        <input type="hidden" name="id_proposal" value="<?=$proposal->id?>">
+                        <textarea required placeholder="Masukkan Keterangan" id="" name="keterangan_proposal" class="form-control"></textarea>
+                        <button type="submit" name="submit" value="terima" class="btn btn-success"><span class="fa fa-check"></span> Terima</a>
+                        <button type="submit" name="submit" value="tolak"  class="btn btn-danger"><span class="fa fa-remove"></span> Tolak</a>
+                    </form>
                 </div>
-            </form>
     </div>
 </div>
 

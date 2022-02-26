@@ -14,7 +14,7 @@ class Model_login extends CI_Model {
             $cekuser = $cekuser->row();
             if(password_verify($password,$cekuser->password)) {
                 if($cekuser->user_level == "0") {
-                    if($cekuser->email_verified_at==null) {
+                    if($cekuser->email_verified_at=="") {
                         return false;
                     }
                 }

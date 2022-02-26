@@ -12,16 +12,19 @@
 <div class="box box-secondary">
     <div class="box-header with-border">
         Data Bukti Tayang.
+        <div class="pull-right">
+            <a href="<?=base_url()?>ordermedia" class="btn btn-warning btn-xs"><i class="fa fa-arrow-left"></i></a>
+        </div>
      <div id="info-alert"><?=@$this->session->flashdata('status')?></div>
     </div>
     <div class="box-body">
         
     <div class="form-group">
-        <button class="btn btn-primary btnFilter"><i class="fa fa-plus"></i> Tambah Data</button>
         </div>
-        <form action="<?=base_url()?>dataupload/save" method="post" style="display:none" id="formFilter" enctype="multipart/form-data">
+        <form action="<?=base_url()?>dataupload/save" method="post" enctype="multipart/form-data">
             <?php if(!empty($formula)) { ?>
                 <input type="hidden" name="proposal_id" value="<?=$proposal_id?>">
+                <input type="hidden" name="id_order" value="<?=$id_order?>">
                 <input type="hidden" id="statusFilter" value="0">
                 <div class="row">
                     <div class="col-md-6 col-xs-12 col-lg-4">
@@ -36,14 +39,14 @@
                                 );
                                 ?>
                                 <div class="form-group">
-                                    <label for=""><?=$f->kolom?></label>
+                                    <label for=""><?=$f->kolom?><?=$arr_tipe[$f->tipe]=='file'?' (PDF 5MB)':''?></label>
                                     <input type="hidden" name="formula_id[]" value="<?=($f->id)?>">
                                     <input name="value[]" type="<?=$arr_tipe[$f->tipe]?>" class="form-control <?=($f->tipe=='date')?"datepicker":""?>" required>
                                 </div>
                             <?php }?>
                             
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default form-control">Simpan</button>
+                                <button type="submit" class="btn btn-primary form-control">Simpan</button>
                             </div>
                         </div>
                         </div>
@@ -52,17 +55,37 @@
                 <?php } ?>
         </form>
         <div class="table-responsive">
-            <table class="table table-hover" id="datatable">
+            <table class="table table-hover exporting-table">
                 <thead>
                     <tr>
                         <th>No</th>
                         <th>Kolom</th>
-                        <th>Value</th>
-                        <th>Created At</th>
+                        <th>Isi</th>
+                        <th>Waktu Submit</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($list as $key => $row){ $id = $row->id; ?>
+                    <tr>
+                        <td><?=$key+1?></td>
+                        <td><?=$row->kolom?></td>
+                        <td>
+                            <?php 
+                            if($row->tipe=='file') {
+                                $val = $row->value;
+                                echo "<a target='_blank' href='".base_url()."berkas/buktitayang/".$val."'>Lihat Dokumen</a>";
+                            }else {
+                                echo $row->value;
+                            }
+                            ?>
+                        </td>
+                        <td><?=date('Y-m-d H:i:s',strtotime($row->created_at));?></td>
+                        <td>
+                        <a onclick="return confirm('Hapus Data?')" href="<?=base_url()."dataupload/hapus/".$id.'/'.$row->proposal_id.'/'.$this->uri->segment(4)?>" class="btn btn-danger btn-xs"><i class="fa fa-remove"></i></a>
+                        </td>
+                    </tr>
+                    <?php }?>
                 </tbody>
             </table>
         </div>

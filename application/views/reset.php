@@ -26,11 +26,26 @@
 
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <style>
+    .login-page {
+      background:url('<?=base_url()?>assets/front/images/bg_home.jpeg') no-repeat center center fixed;
+      background-size:cover;
+    }
+    .login-logo {
+      background-color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href=""><b>SIKEPLU</b>System</a>
+  <a href="<?=base_url()?>">
+      <img src="<?=base_url()?>assets/kominfo.png" width="30" alt="">
+      
+    <b>SIKEPLU</b>
+  </a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">

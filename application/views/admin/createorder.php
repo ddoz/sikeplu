@@ -21,10 +21,10 @@
         <form method="POST" action="<?=base_url()?>adminordermedia/save" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="">Media</label>
-                <select name="id_media" required id="id_media" class="form-control">
-                    <option value="">pilih</option>
+                <select name="id_media" required id="id_media" class="form-control select2">
+                    <option value="">Pilih Media</option>
                     <?php foreach($media as $m) { ?>
-                        <option value="<?=$m->id?>"><?=$m->nama_media?></option>
+                        <option value="<?=$m->id?>">Nama Media : <?=$m->nama_media?> | UKW : <?=($m->nama_penilaian=="")?"Belum Mengisi/Tidak Ada":$m->nama_penilaian?> | Tipe Media : <?=$m->tipe_media?> | Jumlah Order : <?=getJumlahOrder($m->id)?></option>
                     <?php }?>
                 </select>
             </div>
@@ -32,7 +32,12 @@
                 <label for="">Keterangan Order</label>
                 <textarea name="keterangan_order" required class="form-control"></textarea>
             </div>
+            <div class="fowm-group">
+                <label for="">Surat Order (1MB PDF)</label>
+                <input type="file" name="surat_order" required class="form-control">
+            </div>
             <div class="form-group">
+                <br>
                 <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Simpan</button>
             </div>
         </form>

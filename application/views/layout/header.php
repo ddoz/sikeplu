@@ -174,6 +174,11 @@
           <li class="<?=(@$link=='adminmedia')?'active':''?>"><a href="<?php echo base_url();?>adminmedia"><i class="fa fa-list"></i> <span>Data Media</span></a></li>
           <li class="<?=(@$link=='adminordermedia')?'active':''?>"><a href="<?php echo base_url();?>adminordermedia"><i class="fa fa-send"></i> <span>Order Media</span></a></li>
         <?php }?>
+        <?php if($this->session->userdata('userLevel')=="3") { ?>
+          <li class="<?=(@$link=='adminpengajuan')?'active':''?>"><a href="<?php echo base_url();?>adminpengajuan"><i class="fa fa-list"></i> <span>Data Pengajuan</span></a></li>
+          <li class="<?=(@$link=='adminmedia')?'active':''?>"><a href="<?php echo base_url();?>adminmedia"><i class="fa fa-list"></i> <span>Data Media</span></a></li>
+          <li class="<?=(@$link=='adminordermedia')?'active':''?>"><a href="<?php echo base_url();?>adminordermedia"><i class="fa fa-send"></i> <span>Order Media</span></a></li>
+        <?php }?>
         <?php if($this->session->userdata('userLevel')=="1") { ?>
         <li class="<?=(@$link=='adminpengajuan')?'active':''?>"><a href="<?php echo base_url();?>adminpengajuan"><i class="fa fa-list"></i> <span>Data Pengajuan</span></a></li>
         <li class="<?=(@$link=='adminordermedia')?'active':''?>"><a href="<?php echo base_url();?>adminordermedia"><i class="fa fa-send"></i> <span>Order Media</span></a></li>
@@ -197,7 +202,7 @@
         <?php if($this->session->userdata('userLevel')=="0") { ?>
         <li class="<?=(@$link=='pengajuan')?'active':''?>"><a href="<?php echo base_url();?>pengajuan"><i class="fa fa-send"></i> <span>Kelengkapan Data</span></a></li>
         <li class="<?=(@$link=='ordermedia')?'active':''?>"><a href="<?php echo base_url();?>ordermedia"><i class="fa fa-list"></i> <span>Order Media</span></a></li>
-        <li class="<?=(@$link_t=='data')?'active menu-open':''?>  treeview">
+        <!-- <li class="<?=(@$link_t=='data')?'active menu-open':''?>  treeview">
             <a href="#">
               <i class="fa fa-list"></i>
               <span>Data</span>
@@ -208,7 +213,7 @@
             <ul class="treeview-menu">
               <li class="<?=(@$link=='dataupload')?'active':''?>"><a href="<?=base_url()?>dataupload"><i class="fa fa-circle-o"></i> Data Bukti Penayangan</a></li>
             </ul>
-        </li>
+        </li> -->
         <?php }?>
       </ul>
     </section>

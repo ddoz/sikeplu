@@ -27,7 +27,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="">Nomor NPWP</label>
+                                <label for="">Nomor NPWP Perusahaan</label>
                                 <input type="number" required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
                             </div>
                         </div>
@@ -57,12 +57,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Jabatan</label>
-                                <select name="jabatan_pic" id="jabatan_pic" required class="form-control">
-                                    <option value="">Pilih</option>
-                                <?php foreach($jabatan as $jbt) { ?>
-                                    <option <?=@$proposal->jabatan_pic==$jbt->id?"selected":""?> value="<?=$jbt->id?>"><?=$jbt->nama_jabatan?></option>
-                                <?php }?>
-                                </select>
+                                <input type="text" value="<?=@$proposal->jabatan_pic?>" name="jabatan_pic" id="jabatan_pic" required class="form-control">
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -163,7 +158,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Upload Rekening Biro</label>
+                                <label>Upload Buku Rekening</label>
                                 <input <?php  if(@$proposal->upload_rekening==null){ echo 'required'; }?> type="file" value="<?=@$proposal->upload_rekening?>" class="form-control" name="upload_rekening" id="upload_rekening">
                                 <?php if(@$proposal->upload_rekening!=null){ ?>
                                 <a href="<?=base_url()?>berkas/proposal/<?=$proposal->upload_rekening?>">Lihat Dokumen</a>
@@ -176,7 +171,9 @@
 
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Kelengkapan Berkas</a></li>
+                <?php if(@$proposal->status=="diterima"){ ?>
                 <li><a data-toggle="tab" href="#menu1">Ceklis Persyaratan</a></li>
+                <?php }?>
             </ul>
 
 
@@ -223,7 +220,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Kartu Identitas PIC (PDF *1MB)
+                                <th>Kartu Identitas Penanggung Jawab (PDF *1MB)
 
                             
                                 </th>
@@ -369,7 +366,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>NPWP (PDF *1MB)</th>
+                                <th>NPWP Perusahaan (PDF *1MB)</th>
                                 <td>
                                     <input type="file" name="npwp" accept=".pdf" class="form-control">
                                     <?php if(@$proposal->npwp!="") { ?>
@@ -555,7 +552,8 @@
     <div class="box-footer">
             <form action="">
                 <div class="form-group">
-                    <label for="">Status Saat ini Adalah : <?=strtoupper(@$proposal->status)?></label>
+                    <label for="">Status Saat ini Adalah : <?=strtoupper(@$proposal->status)?></label><br>
+                    <label for="">Keterangan : <?=strtoupper(@$proposal->keterangan)?></label>
                 </div>
             </form>
     </div>

@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="">Nomor NPWP</label>
+                        <label for="">Nomor NPWP Perusahaan</label>
                         <input type="number" disabled required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
                     </div>
                 </div>
@@ -54,12 +54,7 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label>Jabatan</label>
-                        <select disabled readonly name="jabatan_pic" id="jabatan_pic" required class="form-control">
-                            <option value="">Pilih</option>
-                        <?php foreach($jabatan as $jbt) { ?>
-                            <option <?=@$proposal->jabatan_pic==$jbt->id?"selected":""?> value="<?=$jbt->id?>"><?=$jbt->nama_jabatan?></option>
-                        <?php }?>
-                        </select>
+                        <input disabled readonly type="text" value="<?=@$proposal->jabatan_pic?>" name="jabatan_pic" id="jabatan_pic" required class="form-control">
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -192,7 +187,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Akta Perusahaan (PDF *1MB)</th>
+                                <th>Akta Perusahaan </th>
                                 <td>
                                     <?php if(@$proposal->akta_perusahaan!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->akta_perusahaan?>">Lihat Berkas</a>
@@ -212,7 +207,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Kartu Identitas PIC (JPG *1MB)
+                                <th>Kartu Identitas Penanggung Jawab 
 
                             
                                 </th>
@@ -238,7 +233,7 @@
                                     class="bg-danger"
                                 <?php }?>
                             >
-                                <th>Surat Tugas Kepala Biro (PDF *1MB)</th>
+                                <th>Surat Tugas Kepala Biro </th>
                                 <td>
                                     <?php if(@$proposal->sk_pic!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sk_pic?>">Lihat Berkas</a>
@@ -260,7 +255,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Surat Permohonan Kerjasama (PDF *1MB)</th>
+                                <th>Surat Permohonan Kerjasama </th>
                                 <td>
                                     <?php if(@$proposal->surat_permohonan_kerjasama!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->surat_permohonan_kerjasama?>">Lihat Berkas</a>
@@ -281,7 +276,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Proposal Penawaran (PDF *1MB)</th>
+                                <th>Proposal Penawaran </th>
                                 <td>
                                     <?php if(@$proposal->proposal_penawaran!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->proposal_penawaran?>">Lihat Berkas</a>
@@ -302,7 +297,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>NIB (IU/SIUP/SITU) (PDF *1MB)</th>
+                                <th>NIB (IU/SIUP/SITU) </th>
                                 <td>
                                     <?php if(@$proposal->siup_situ!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->siup_situ?>">Lihat Berkas</a>
@@ -323,7 +318,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>NPWP (JPG *1MB)</th>
+                                <th>NPWP Perusahaan (JPG *1MB)</th>
                                 <td>
                                     <?php if(@$proposal->npwp!="") { ?>
                                         <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">
@@ -344,7 +339,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikat KEMENKUMHAM (PDF *1MB)</th>
+                                <th>Sertifikat KEMENKUMHAM </th>
                                 <td>
                                     <?php if(@$proposal->sertifikat_kemenkumham!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sertifikat_kemenkumham?>">Lihat Berkas</a>
@@ -365,7 +360,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikat Dewan PERS (PDF *1MB)</th>
+                                <th>Sertifikat Dewan PERS </th>
                                 <td>
                                     <?php if(@$proposal->sertifikat_dewan_pers!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sertifikat_dewan_pers?>">Lihat Berkas</a>
@@ -386,7 +381,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikat Dewan PERS (PDF *1MB)</th>
+                                <th>Sertifikat Dewan PERS </th>
                                 <td>
                                     <?php if(@$proposal->spt_tahun_terakhir!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->spt_tahun_terakhir?>">Lihat Berkas</a>
@@ -407,7 +402,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Surat Domisili Kantor Biro (PDF *1MB)</th>
+                                <th>Surat Domisili Kantor Biro </th>
                                 <td>
                                     <?php if(@$proposal->surat_domisili_kantor_biro!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->surat_domisili_kantor_biro?>">Lihat Berkas</a>

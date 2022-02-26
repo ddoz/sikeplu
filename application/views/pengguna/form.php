@@ -24,7 +24,7 @@
                 <select name="level" id="" class="form-control" required>
                     <option value="">Pilih Level</option>
                     <option value="0">Biasa</option>
-                    <option value="1">Admin</option>
+                    <option value="3">Admin</option>
                     <option value="2">KADIS</option>
                 </select>
             </div>

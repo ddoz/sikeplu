@@ -12,28 +12,40 @@ class Dataupload extends CI_Controller {
         $this->load->model('Model_subkategori');
         $this->load->model('Model_revisi');
 	}
-	
-	public function index()
-	{
 
+    public function index() {
+        redirect(base_url());
+    }
+	
+	public function list()
+	{
+        $id_proposal = $this->uri->segment(3);
+        $id_order = $this->uri->segment(4);
+        
         //get proposal
         $id = $this->session->userdata('userId');
-        $query = $this->db->get_where("proposals",array("user_id" => $id));
+
+        $query = $this->db->get_where("proposals",array("id" => $id_proposal));
+
         $formula = [];
-        $proposal_id = 0;
+
+        $this->db->select("bukti_tayangs.*,formulir_bukti_tayangs.kolom,formulir_bukti_tayangs.tipe");
+        $this->db->join("formulir_bukti_tayangs","formulir_bukti_tayangs.id=bukti_tayangs.formula_id");
+        $list = $this->db->get_where("bukti_tayangs",array("order_id"=>$id_order))->result();
+       
         if($query->num_rows() > 0) {
             $tipemedia = $query->row();
-            $proposal_id = $tipemedia->id;
             $formula = $this->db->get_where("formulir_bukti_tayangs",array("tipemedia_id"=>$tipemedia->tipemedia_id))->result();
         }
 
         $data = array(
             'script'    => 'script/js_dataupload',
             'page'      => 'dataupload/index',
-            'link'      => 'dataupload',
-            'link_t'    => 'data',
+            'link'      => 'ordermedia',
             'formula'     => $formula,
-            'proposal_id'      => $proposal_id
+            'proposal_id'      => $id_proposal,
+            'id_order'      => $id_order,
+            'list' => $list,
         );
 		$this->load->view('layout/template',$data);
     }
@@ -70,6 +82,7 @@ class Dataupload extends CI_Controller {
     }
 
     public function detail() {
+        $this->load->model('Model_upload');
         $id = $this->uri->segment(3);
         if(is_numeric($id)) {
             $detail = $this->Model_upload->getById($id);
@@ -109,10 +122,13 @@ class Dataupload extends CI_Controller {
     }
 
     public function save() {
+        $id_proposal = $this->input->post('proposal_id');
+        $id_order = $this->input->post('id_order');
         $this->db->trans_begin();
         foreach ($this->input->post('formula_id') as $key => $val) {
             $insert = array(
                 'proposal_id' => $this->input->post('proposal_id'),
+                'order_id' => $id_order,
                 'user_id' => $this->session->userdata('userId'),
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
@@ -120,8 +136,8 @@ class Dataupload extends CI_Controller {
             );
             if($this->checkiffile($val)->tipe == 'file') {
                 $config['upload_path']          = './berkas/buktitayang/';
-                $config['allowed_types']        = 'jpg|png|jpeg|pdf|PDF';
-                $config['max_size']             = 2048; // 1MB
+                $config['allowed_types']        = 'pdf|PDF';
+                $config['max_size']             = 5048; // 1MB
                 $config['encrypt_name']         = true;
                 $this->load->library('upload',$config);
                 $files = $_FILES;
@@ -163,7 +179,7 @@ class Dataupload extends CI_Controller {
             <strong>Success!</strong> Data berhasil disimpan.
           </div>');
         }
-        redirect(base_url().'dataupload');
+        redirect(base_url().'dataupload/list/'.$id_proposal.'/'.$id_order);
     }
 
     public function checkiffile($id) {
@@ -171,19 +187,23 @@ class Dataupload extends CI_Controller {
     }
 
     public function hapus() {
+
+        $id_proposal = $this->uri->segment(4);
+        $id_order = $this->uri->segment(5);
+
         $this->db->where('id',$this->uri->segment(3));
         if($this->db->delete('bukti_tayangs')) {
             $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Success!</strong> Data berhasil disimpan.
+            <strong>Success!</strong> Data berhasil dihapus.
           </div>');
         }else {
             $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-            <strong>Fail!</strong> Data gagal disimpan.
+            <strong>Fail!</strong> Data gagal dihapus.
           </div>');
         }
-        redirect(base_url().'dataupload');
+        redirect(base_url().'dataupload/list/'.$id_proposal.'/'.$id_order);
     }
 
 }
