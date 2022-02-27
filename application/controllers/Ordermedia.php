@@ -16,6 +16,7 @@ class Ordermedia extends CI_Controller {
         $this->db->select('order_media.*,proposals.nama_media');
         $this->db->from('order_media');
         $this->db->join('proposals','proposals.id=order_media.id_media');
+        $this->db->where('proposals.user_id',$this->session->userdata('userId'));
         $pengajuan = $this->db->get()->result();
         $data = array(
             'script'    => 'script/js_pengajuan',
