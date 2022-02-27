@@ -172,6 +172,11 @@
                                 </div>
                             </div>
                         </div>
+                        <?php if(@$proposal->status=="draft"){ ?>
+                        <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
+                        </div>
+                        <?php } ?>
                 </div>
             </div>
 
@@ -512,9 +517,9 @@
 
                     <div class="form-group">
                     <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
-                    <?php // if(strtolower(@$proposal->status)!='diterima'){ ?>
+                    <?php  if(strtolower(@$proposal->status)!='diterima'){ ?>
                        <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
-                       <?php // }?>
+                       <?php  }?>
                     </div>
            
            </form>
