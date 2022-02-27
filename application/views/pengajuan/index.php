@@ -185,6 +185,7 @@
 
 
             <div class="tab-content">
+            <?php if(@$proposal->status=="diterima"){ ?>
                 <div id="home" class="tab-pane fade in active">
                     <h3>Kelengkapan Berkas</h3>
                     <div class="table-responsive">
@@ -518,6 +519,7 @@
            
            </form>
                 </div>
+                <?php }?>
                 <div id="menu1" class="tab-pane fade">
                     <h3>Ceklis Persyaratan</h3>
                     <form action="<?=base_url()?>pengajuan/ceklis" method="post" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin akan mengirim data yang sudah di inputkan?')">
