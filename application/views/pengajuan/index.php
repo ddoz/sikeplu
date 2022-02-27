@@ -177,8 +177,8 @@
 
 
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Kelengkapan Berkas</a></li>
                 <?php if(@$proposal->status=="diterima"){ ?>
+                <li class="active"><a data-toggle="tab" href="#home">Kelengkapan Berkas</a></li>
                 <li><a data-toggle="tab" href="#menu1">Ceklis Persyaratan</a></li>
                 <?php }?>
             </ul>
