@@ -172,9 +172,9 @@
                                 </div>
                             </div>
                         </div>
-                        <?php if(@$proposal->status=="draft"){ ?>
-                        <div class="form-group">
-                        <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
+                        <?php if(@$proposal==null){ ?>
+                        <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Kirim</button>
                         </div>
                         <?php } ?>
                 </div>
