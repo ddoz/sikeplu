@@ -62,12 +62,11 @@ class Welcome extends CI_Controller {
             'mailtype'  => 'html',
             'charset'   => 'utf-8',
             'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'sikeplu.mailer@gmail.com',  // Email gmail
-            'smtp_pass'   => 'sikeplu@2021',  // Password gmail
-            'smtp_crypto' => 'ssl',
-            'smtp_port'   => 465,
-            'crlf'    => "\r\n",
+            'smtp_host' => 'mail.lampungutarakab.go.id',
+            'smtp_user' => 'sikeplu@lampungutarakab.go.id',  // Email gmail
+            'smtp_pass'   => 'sikeplu2022',  // Password gmail
+            'smtp_crypto' => 'tls',
+            'smtp_port'   => 587,
             'newline' => "\r\n"
         ];
 
@@ -75,7 +74,7 @@ class Welcome extends CI_Controller {
         $this->load->library('email', $config);
 
         // Email dan nama pengirim
-        $this->email->from('no-reply@sikeplu.com', 'Sikeplu');
+        $this->email->from('sikeplu@lampungutarakab.go.id', 'Sikeplu');
 
         // Email penerima
         $this->email->to($data['email']); // Ganti dengan email tujuan
@@ -100,12 +99,12 @@ class Welcome extends CI_Controller {
 				$this->session->set_flashdata('status','Registrasi gagal. Silahkan coba dengan username lainnya.');
 			}
         } else {
+			// $this->db->insert("logmail",array("log"=>json_encode($this->email->print_debugger())));
             // $this->session->set_flashdata('status','Reset sukses. Silahkan Cek email untuk instruksi lebih lanjut');
             $this->session->set_flashdata('status','Registrasi gagal. Silahkan coba dengan email lainnya.');
         }
-		
-
-
+// echo $this->email->print_debugger();
+// die();
 		redirect(base_url()."welcome/register");
 	}
 

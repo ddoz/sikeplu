@@ -41,7 +41,7 @@
                                 <div class="form-group">
                                     <label for=""><?=$f->kolom?><?=$arr_tipe[$f->tipe]=='file'?' (PDF 5MB)':''?></label>
                                     <input type="hidden" name="formula_id[]" value="<?=($f->id)?>">
-                                    <input name="value[]" type="<?=$arr_tipe[$f->tipe]?>" class="form-control <?=($f->tipe=='date')?"datepicker":""?>" required>
+                                    <input autocomplete="false" name="value<?=$f->id?>" type="<?=$arr_tipe[$f->tipe]?>" class="form-control <?=($f->tipe=='date')?"datepicker":""?>" required>
                                 </div>
                             <?php }?>
                             <div class="form-group">

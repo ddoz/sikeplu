@@ -28,7 +28,7 @@ class Adminpengajuan extends CI_Controller {
 
   public function form() {
       $pengajuan = $this->db->get_where('proposals', array('id' => $this->uri->segment(3)))->row();
-
+  
       $ceklis = [];
       $bukti = [];
 
@@ -51,7 +51,7 @@ class Adminpengajuan extends CI_Controller {
                   $ceklis[] = $ins;
               }
           }
-          $this->db->select('bukti_tayangs.*,formulir_bukti_tayangs.kolom,formulir_bukti_tayangs.tipe');
+          $this->db->select('bukti_tayangs.*,formulir_bukti_tayangs.kolom,formulir_bukti_tayangs.tipe,');
           $this->db->from('bukti_tayangs');
           $this->db->join('formulir_bukti_tayangs','formulir_bukti_tayangs.id=bukti_tayangs.formula_id');
           $this->db->where(array('bukti_tayangs.proposal_id'=>$pengajuan->id));
@@ -137,9 +137,49 @@ class Adminpengajuan extends CI_Controller {
     $id = $this->input->post('id_proposal');
     $status = ($this->input->post('submit')=="terima") ? "diterima" : "ditolak";
     $keterangan = $this->input->post('keterangan_proposal');
+    
+    if($status=='diterima') {
+      //cek kelengkapan berkas
+      $cek_berkas = $this->db->get_where('proposals',array("id"=>$id))->result();
+      $status_berkas = array();
+      foreach ($cek_berkas as $index => $val) {
+        $status_berkas[0]=(int)$val->akta_perusahaan_status;
+        $status_berkas[1]=(int)$val->kartu_identitas_pic_status;
+        $status_berkas[2]=(int)$val->sk_pic_status;
+        $status_berkas[3]=(int)$val->surat_permohonan_kerjasama_status;
+        $status_berkas[4]=(int)$val->proposal_penawaran_status;
+        $status_berkas[5]=(int)$val->siup_situ_status;
+        $status_berkas[6]=(int)$val->npwp_status;
+        $status_berkas[7]=(int)$val->sertifikat_kemenkumham_status;
+        $status_berkas[8]=(int)$val->spt_tahun_terakhir_status;
+        $status_berkas[9]=(int)$val->sertifikat_dewan_pers_status;
+      }
+      if(in_array("0",$status_berkas)) {
+        $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+          <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+          <strong>Success!</strong> Gagal update data. Kelengkapan berkas harus di terima semua terlebih dahulu.
+        </div>');
+        redirect(base_url()."adminpengajuan/form/".$id);
+      }
+    }
+
 
     $this->db->where('id',$id);
     $this->db->update('proposals',array('status'=>$status,'keterangan'=>$keterangan));
+    $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Success!</strong> Berhasil update data.
+      </div>');
+      redirect(base_url()."adminpengajuan/form/".$id);
+  }
+
+  public function approveidentitas() {
+
+    $id = $this->input->post('id_proposal');
+    $status = ($this->input->post('submit')=="terima") ? "diterima" : "ditolak";
+
+    $this->db->where('id',$id);
+    $this->db->update('proposals',array('status_identitas'=>$status,'keterangan_identitas'=>$this->input->post('keterangan_identitas')));
     $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Success!</strong> Berhasil update data.
@@ -159,7 +199,7 @@ class Adminpengajuan extends CI_Controller {
 
   public function delete() {
     $this->db->where('id',$this->uri->segment(3));
-    $this->db->update('proposals',array('id'=>$id));
+    $this->db->delete('proposals');
     $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
         <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
         <strong>Success!</strong> Berhasil update data.

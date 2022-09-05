@@ -11,24 +11,44 @@
 <div class="box box-secondary">
     <div class="box-header with-border">
         Form untuk Submit / Upload.
-     <div id="info-alert"><?=$this->session->flashdata('status')?></div>
     </div>
     <div class="box-body">
+        <div id="info-alert"><?=$this->session->flashdata('status')?></div>
             <h3>Identitas Media</h3>
             <div class="row">
-                <div class="col-md-6">
+                
+            <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Nomor KTP Biro</label>
                         <input type="number" disabled required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Upload KTP Biro Lampung</label></br>
+                        <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=@$proposal->ktp_biro_lampung?>">Lihat Dokumen</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <div class="form-group">
                         <label for="">Nomor NPWP Perusahaan</label>
                         <input type="number" disabled required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Upload Surat Tugas Kepala Biro</label></br>
+                        <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=@$proposal->surat_tugas_biro?>">Lihat Dokumen</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                     <div class="form-group">
+                        <label>Upload ID CARD/Kartu Pers Pendaftar</label></br>
+                        <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=@$proposal->id_card?>">Lihat Dokumen</a>
+                    </div>
+                </div>
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Tipe Media</label>
                         <select readonly="readonly" disabled name="tipemedia_id" required id="" class="form-control">
@@ -39,144 +59,164 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Nama Media</label>
                         <input readonly="readonly" disabled type="text" class="form-control" value="<?=@$proposal->nama_media?>" name="nama_media" id="nama_media" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Nama Pemilik Perusahaan</label>
                         <input readonly="readonly" disabled type="text" class="form-control" value="<?=@$proposal->nama_pic?>" name="nama_pic" id="nama_pic" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Jabatan</label>
                         <input type="text" value="<?=@$proposal->jabatan_pic?>" name="jabatan_pic" id="jabatan_pic" readonly class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Alamat Website Media</label>
                         <input readonly="readonly" disabled type="text" class="form-control" value="<?=@$proposal->website?>" name="website" id="website" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Provinsi Redaksi</label>
                         <input type="text" value="<?=@explode('_',@$proposal->provinsi_redaksi)[1]?>" readonly disabled class="form-control">
                        
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Kota Redaksi</label>
                         <input type="text" value="<?=@$proposal->kota_redaksi?>" readonly disabled class="form-control">
         
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Alamat Redaksi</label>
                         <textarea readonly="readonly" disabledname="alamat_redaksi_1" id="alamat_redaksi_1" required class="form-control"><?=@$proposal->alamat_redaksi_1?></textarea>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_map_redaksi">Pointing MAP</button>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Kode POS Redaksi</label>
                         <input readonly="readonly" disabledtype="text" value="<?=@$proposal->kode_pos_redaksi?>" class="form-control" name="kode_pos_redaksi" id="kode_pos_redaksi" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Provinsi Biro</label>
                         <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
                         
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Kota Biro</label>
                         <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
                        
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Alamat Biro</label>
                         <textarea readonly name="alamat_redaksi_2" id="alamat_redaksi_2" required class="form-control"><?=@$proposal->alamat_redaksi_2?></textarea>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal_map">Pointing MAP</button>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Kode POS Biro</label>
                         <input readonly="readonly" disabledtype="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Provinsi</label>
                         <input type="text" value="<?=@explode('_',@$proposal->provinsi)[1]?>" readonly disabled class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Kota</label>
                         <input type="text" value="<?=@$proposal->kota?>" readonly disabled class="form-control">
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Kode POS</label>
                         <input readonly="readonly" disabled type="text" value="<?=@$proposal->kode_pos?>" class="form-control" name="kode_pos" id="kode_pos" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Email Biro</label>
                         <input readonly="readonly" disabled type="text" value="<?=@$proposal->email_redaksi?>" class="form-control" name="email_redaksi" id="email_redaksi" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>No. Telp/HP Biro</label>
                         <input readonly="readonly" disabled type="text" value="<?=@$proposal->kontak_redaksi?>" class="form-control" name="kontak_redaksi" id="kontak_redaksi" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
-                        <label>No. Rekening Biro</label>
-                        <input type="text" disabled value="<?=@$proposal->nomor_rekenig?>" class="form-control" name="nomor_rekenig" id="nomor_rekenig" required>
+                        <label>No. Rekening</label>
+                        <input type="text" disabled value="<?=@$proposal->nomor_rekening?>" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Nama Bank</label>
                         <input type="text" disabled value="<?=@$proposal->nama_bank==""?"BANK LAMPUNG":$proposal->nama_bank?>" class="form-control" name="nama_bank" id="nama_bank" required>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-12">
                     <div class="form-group">
                         <label>Upload Buku Rekening</label></br>
                         <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=@$proposal->upload_rekening?>">Lihat Dokumen</a>
                     </div>
                 </div>
-                        </div>
+            </div>
 
+            </div>
+            <hr>
+            <div class="form-group alert alert-info">
+                    <label for="">Status Identitas Media : <?=strtoupper(@$proposal->status_identitas)?></label><br>
+                    <label for="">Keterangan Identitas Media : <?=strtoupper(@$proposal->keterangan_identitas)?></label>
+                   <?php // if(@$proposal->status_identitas!='diterima'){ ?>
+                    <h5>Verifikasi Identitas Media</h5>
+                    <form method="POST" action="<?=base_url()?>adminpengajuan/approveidentitas">
+                        <input type="hidden" name="id_proposal" value="<?=$proposal->id?>">
+                        <textarea name="keterangan_identitas" class="form-control"></textarea>
+                        <button type="submit" name="submit" value="terima" class="btn btn-success"><span class="fa fa-check"></span> Terima Identitas Media</a>
+                        <button type="submit" name="submit" value="tolak"  class="btn btn-danger"><span class="fa fa-remove"></span> Tolak Identitas Media</a>
+                    </form>
+                <?php // }?>
+                </div>
+            <hr>
 
-            <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#home">Kelengkapan Berkas</a></li>
-                <li><a data-toggle="tab" href="#menu1">Ceklis Persyaratan</a></li>
-                <li><a data-toggle="tab" href="#menu2">Pengiriman Bukti Tayang</a></li>
-            </ul>
+            <?php if(@$proposal->status_identitas=="diterima"){ ?>
+               <ul class="nav nav-tabs">
+                   <li class="active"><a data-toggle="tab" href="#home">Kelengkapan Berkas</a></li>
+                   <li><a data-toggle="tab" href="#menu1">Ceklis Persyaratan</a></li>
+                   <!-- <li><a data-toggle="tab" href="#menu2">Pengiriman Bukti Tayang</a></li> -->
+               </ul>
+               <?php }?>
 
 
             <div class="tab-content">
-                <div id="home" class="tab-pane fade in active">
+                <div id="home" class="tab-pane fade in <?=(@$proposal->status_identitas=="diterima")?"active":""?>">
                     <h3>Kelengkapan Berkas</h3>
                     <div class="table-responsive">
                         <form action="<?=base_url()?>adminpengajuan/validasi" method="post">
@@ -191,7 +231,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Akta Perusahaan (PDF *1MB)</th>
+                                <th>Akta Perusahaan (PDF *5MB)</th>
                                 <td>
                                     <?php if(@$proposal->akta_perusahaan!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->akta_perusahaan?>">Lihat Berkas</a>
@@ -219,7 +259,7 @@
                                 
                                 <td>
                                     <?php if(@$proposal->kartu_identitas_pic!="") { ?>
-                                    <img class="img-responsive" width="150"  src="<?=base_url()?>berkas/proposal/<?=@$proposal->kartu_identitas_pic?>" alt="">
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->kartu_identitas_pic?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
@@ -331,7 +371,7 @@
                                 <th>NPWP Perusahaan (JPG *1MB)</th>
                                 <td>
                                     <?php if(@$proposal->npwp!="") { ?>
-                                        <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
@@ -372,7 +412,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikat Dewan PERS (PDF *1MB)</th>
+                                <th>Sertifikat Dewan PERS (PDF *1MB) (OPSIONAL)</th>
                                 <td>
                                     <?php if(@$proposal->sertifikat_dewan_pers!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sertifikat_dewan_pers?>">Lihat Berkas</a>
@@ -394,7 +434,7 @@
                                 <?php }else { ?>
                                     class="bg-danger"
                                 <?php }?>>
-                                <th>Sertifikat Dewan PERS (PDF *1MB)</th>
+                                <th>SPT Tahun Terakhir (PDF *1MB)</th>
                                 <td>
                                     <?php if(@$proposal->spt_tahun_terakhir!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->spt_tahun_terakhir?>">Lihat Berkas</a>
@@ -561,9 +601,10 @@ function lihatNilaiFormula($tipemedia=0,$hasil=0) {
     </div>
 
     <div class="box-footer">
-                <div class="form-group">
-                    <label for="">Status Saat ini Adalah : <?=strtoupper($proposal->status)?></label><br>
-                    <label for="">Keterangan : <?=strtoupper($proposal->keterangan)?></label>
+    <?php if(@$proposal->status_identitas=="diterima"){ ?>
+                <div class="form-group alert alert-info">
+                    <label for="">Status Kelengkapan Berkas : <?=strtoupper($proposal->status)?></label><br>
+                    <label for="">Keterangan Kelengkapan Berkas: <?=strtoupper($proposal->keterangan)?></label>
                     <hr>
                     <form method="POST" action="<?=base_url()?>adminpengajuan/approve">
                         <input type="hidden" name="id_proposal" value="<?=$proposal->id?>">
@@ -572,6 +613,7 @@ function lihatNilaiFormula($tipemedia=0,$hasil=0) {
                         <button type="submit" name="submit" value="tolak"  class="btn btn-danger"><span class="fa fa-remove"></span> Tolak</a>
                     </form>
                 </div>
+    <?php }?>
     </div>
 </div>
 

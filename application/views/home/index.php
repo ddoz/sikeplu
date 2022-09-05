@@ -13,7 +13,7 @@
                 if(@$media != "") { ?>
                 <li class="list-group-item">Nama Media <b class='pull-right'> <?=$media->nama_media?></b></li>
                 <li class="list-group-item">Tipe Media <b class='pull-right'> <?=$media->nama?></b></li>
-                <li class="list-group-item">Status Kerjasama <b class='pull-right'> <?=strtoupper($media->status)?></b></li>
+                <li class="list-group-item">Status <b class='pull-right'> <?php  echo (strtoupper($media->status)=="DITERIMA")?"Berkas & Persyaratan Lengkap":"Berkas & Persyaratan Tidak Lengkap/Terdapat Kesalahan";?></b></li>
             <?php }else { echo "<center class='text-danger'>Anda Belum Melakukan Pengajuan Kerjasama</center>"; }} ?>
             </ul>
             <?php if($this->session->userdata('userLevel')!='0'){ ?>

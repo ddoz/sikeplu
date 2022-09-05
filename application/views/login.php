@@ -49,7 +49,7 @@
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Masuk untuk memulai sesi aplikasi</p>
     <?php if(!empty($this->session->flashdata())){ echo "<div class='alert alert-info'><center>".$this->session->flashdata('status')."</center></div>"; } ?>
     <form action="<?=base_url()?>welcome/auth" method="post">
       <div class="form-group has-feedback">
@@ -63,7 +63,7 @@
       <div class="row">
         <!-- /.col -->
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Masuk</button>
         </div>
         <!-- /.col -->
       </div>
@@ -75,7 +75,7 @@
       <div class="row">
         <div class="col-xs-12 text-center">
           <hr>
-          <a href="<?=base_url()?>welcome/register" class="btn btn-success btn-flat">Sign Up</a>
+          <a href="<?=base_url()?>welcome/register" class="btn btn-success btn-flat">Daftar</a>
         </div>
       </div>
     </form>

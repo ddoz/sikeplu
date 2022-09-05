@@ -11,9 +11,9 @@
 <div class="box box-secondary">
     <div class="box-header with-border">
         Form untuk Submit / Upload.
-     <div id="info-alert"><?=$this->session->flashdata('status')?></div>
     </div>
     <div class="box-body">
+        <div id="info-alert"><?=$this->session->flashdata('status')?></div>
         <form method="POST" id="formUpload" action="<?=base_url()?>pengajuan/save" target="" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin akan mengirim data yang sudah di inputkan?')">
             <h3>Identitas Media</h3>
             <div class="row">
@@ -22,13 +22,41 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Nomor KTP Biro Lampung Utara</label>
+                                <input type="hidden" name="nomor_ktp_old" value="<?=@$proposal->nomor_ktp?>" class="form-control">
                                 <input type="number" required name="nomor_ktp" value="<?=@$proposal->nomor_ktp?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Upload KTP Biro Lampung (PDF *1MB)</label>
+                                <input type="file" name="ktp_biro_lampung" <?php if(@$proposal->ktp_biro_lampung==null){ echo "required";} ?>  class="form-control">
+                                <?php if(@$proposal->ktp_biro_lampung!=null){ ?>
+                                <a href="<?=base_url()?>berkas/proposal/<?=$proposal->ktp_biro_lampung?>">Lihat Dokumen</a>
+                                <?php }?>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="">Nomor NPWP Perusahaan</label>
                                 <input type="number" required name="nomor_npwp" value="<?=@$proposal->nomor_npwp?>" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Upload Surat Tugas Kepala Biro (PDF *1MB)</label>
+                                <input type="file" name="surat_tugas_biro" <?php if(@$proposal->surat_tugas_biro==null){ echo "required";} ?> class="form-control">
+                                <?php if(@$proposal->surat_tugas_biro!=null){ ?>
+                                <a href="<?=base_url()?>berkas/proposal/<?=$proposal->surat_tugas_biro?>">Lihat Dokumen</a>
+                                <?php }?>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="">Upload ID CARD/Kartu Pers Pendaftar (PDF *1MB)</label>
+                                <input type="file" name="id_card" <?php if(@$proposal->id_card==null){ echo "required";} ?> class="form-control">
+                                <?php if(@$proposal->id_card!=null){ ?>
+                                <a href="<?=base_url()?>berkas/proposal/<?=$proposal->id_card?>">Lihat Dokumen</a>
+                                <?php }?>
                             </div>
                         </div>
                         <div class="col-md-12">
@@ -146,7 +174,7 @@
                         </div>
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>No. Rekening Biro</label>
+                                <label>No. Rekening</label>
                                 <input type="text" value="<?=@$proposal->nomor_rekening?>" class="form-control" name="nomor_rekening" id="nomor_rekening" required>
                             </div>
                         </div>
@@ -168,45 +196,55 @@
                         <div class="col-md-12">
                         <div class="form-group">
                                 <div class="checkbox-inline">
-                                <label><input type="checkbox" name="cheklist" required>Dengan ini SAYA menyatakan bahwa seluruh data yang di unggah diatas adalah BENAR dan bukan hasil REKAYASA dan SAYA bertanggung jawab penuh atas seluruh data yang SAYA unggah.</label>
+                                <label><input <?=@$proposal==null?"":"checked"?> type="checkbox" name="cheklist" required>Dengan ini SAYA menyatakan bahwa seluruh data yang di unggah diatas adalah BENAR dan bukan hasil REKAYASA dan SAYA bertanggung jawab penuh atas seluruh data yang SAYA unggah.</label>
                                 </div>
                             </div>
                         </div>
-                        <?php if(@$proposal==null){ ?>
+                        <?php if(@$proposal==null || @$proposal->status_identitas=="ditolak" || @$proposal->status_identitas=="draft"){ ?>
                         <div class="form-group text-center">
-                        <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Kirim</button>
+                        <!-- <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Kirim</button> -->
                         </div>
                         <?php } ?>
                 </div>
             </div>
-
-
+            <hr>
+            <div class="alert alert-info">
+                <div class="row">
+                    <div class="col-md-12">
+                    <label for="">Status Identitas Media : <?php echo (strtoupper($proposal->status_identitas)=="DITERIMA")?"Berkas & Persyaratan Lengkap":"Berkas & Persyaratan Tidak Lengkap/Terdapat Kesalahan";?></label><br>
+                    <label for="">Keterangan Identitas Media : <?php echo strtoupper(@$proposal->keterangan_identitas)?></label>
+                    </div>
+                </div>
+            </div>
+                        </form>
             <ul class="nav nav-tabs">
-                <?php if(@$proposal->status=="diterima"){ ?>
+                <?php if(@$proposal->status_identitas=="diterima"){ ?>
                 <li class="active"><a data-toggle="tab" href="#home">Kelengkapan Berkas</a></li>
                 <li><a data-toggle="tab" href="#menu1">Ceklis Persyaratan</a></li>
                 <?php }?>
             </ul>
 
-
+            <form method="POST" id="formUpload" action="<?=base_url()?>pengajuan/savekelengkapanberkas" target="" enctype="multipart/form-data" onsubmit="return confirm('Apakah anda yakin akan mengirim data yang sudah di inputkan?')">
             <div class="tab-content">
-            <?php if(@$proposal->status=="diterima"){ ?>
+            <?php if(@$proposal->status_identitas=="diterima"){ ?>
                 <div id="home" class="tab-pane fade in active">
                     <h3>Kelengkapan Berkas</h3>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <tr
                             <?php if(@$proposal->akta_perusahaan_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->akta_perusahaan_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->akta_perusahaan_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>
                             >
                                 <th>Akta Perusahaan Terakhir (Lengkap) (PDF *5MB)</th>
                                 <td>
+                                    <?php if(@$proposal->akta_perusahaan_status!="1") {  ?>
                                     <input type="file" name="akta_perusahaan" accept=".pdf" class="form-control">
+                                    <?php } ?>
                                     <?php if(@$proposal->akta_perusahaan!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->akta_perusahaan?>">Lihat Berkas</a>
                                     <?php }?>
@@ -220,18 +258,18 @@
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->akta_perusahaan_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->akta_perusahaan_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                         
                             <tr <?php if(@$proposal->kartu_identitas_pic_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->kartu_identitas_pic_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->kartu_identitas_pic_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>Kartu Identitas Penanggung Jawab (PDF *1MB)
 
@@ -239,9 +277,11 @@
                                 </th>
                                 
                                 <td>
+                                    <?php if(@$proposal->kartu_identitas_pic_status!="1") { ?>
                                     <input type="file" name="kartu_identitas_pic" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->kartu_identitas_pic!="") { ?>
-                                    <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->kartu_identitas_pic?>" alt="">
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->kartu_identitas_pic?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
@@ -252,29 +292,31 @@
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->kartu_identitas_pic_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->kartu_identitas_pic_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->sk_pic_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->sk_pic_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->sk_pic_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>
                             >
                                 <th>Surat Tugas Kepala Biro (PDF *1MB)</th>
                                 <td>
+                                    <?php if(@$proposal->sk_pic_status!="1") { ?>
                                     <input type="file" name="sk_pic" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->sk_pic!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sk_pic?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->sk_pic_ket?></textarea>
                                 </td>
                                 <td>
 
@@ -282,233 +324,259 @@
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->sk_pic_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->sk_pic_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->surat_permohonan_kerjasama_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->surat_permohonan_kerjasama_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->surat_permohonan_kerjasama_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>Surat Permohonan Kerjasama (PDF *1MB)</th>
                                 <td>
+                                    <?php if(@$proposal->surat_permohonan_kerjasama_status!="1") { ?>
                                     <input type="file" name="surat_permohonan_kerjasama" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->surat_permohonan_kerjasama!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->surat_permohonan_kerjasama?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->surat_permohonan_kerjasama_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->surat_permohonan_kerjasama_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->surat_permohonan_kerjasama_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->surat_permohonan_kerjasama_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->proposal_penawaran_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->proposal_penawaran_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->proposal_penawaran_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>Proposal Penawaran (PDF *1MB)</th>
                                 <td>
+                                <?php if(@$proposal->proposal_penawaran_status!="1") { ?>
                                     <input type="file" name="proposal_penawaran" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->proposal_penawaran!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->proposal_penawaran?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->proposal_penawaran_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->proposal_penawaran_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->proposal_penawaran_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->proposal_penawaran_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->siup_situ_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->siup_situ_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->siup_situ_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>NIB (IU/SIUP/SITU) (PDF *1MB)</th>
                                 <td>
+                                <?php if(@$proposal->siup_situ_status!="1") { ?>
                                     <input type="file" name="siup_situ" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->siup_situ!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->siup_situ?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->siup_situ_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->siup_situ_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->siup_situ_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->siup_situ_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->npwp_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->npwp_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->npwp_status=="9")  { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>NPWP Perusahaan (PDF *1MB)</th>
                                 <td>
+                                <?php if(@$proposal->npwp_status!="1") { ?>
                                     <input type="file" name="npwp" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->npwp!="") { ?>
-                                        <img class="img-responsive" width="150" src="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">
+                                        <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->npwp?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->npwp_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->npwp_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->npwp_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->npwp_status=="9")  { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->sertifikat_kemenkumham_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->sertifikat_kemenkumham_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->sertifikat_kemenkumham_status=="9"){ ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>Sertifikat KEMENKUMHAM (PDF *1MB)</th>
                                 <td>
+                                <?php if(@$proposal->sertifikat_kemenkumham_status!="1") { ?>
                                     <input type="file" name="sertifikat_kemenkumham" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->sertifikat_kemenkumham!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sertifikat_kemenkumham?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_kemenkumham_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->sertifikat_kemenkumham_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->sertifikat_kemenkumham_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->sertifikat_kemenkumham_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->sertifikat_dewan_pers_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->sertifikat_dewan_pers_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->sertifikat_dewan_pers_status=="9")  { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>Sertifikat Dewan PERS (PDF *1MB) (OPSIONAL)</th>
                                 <td>
+                                <?php if(@$proposal->sertifikat_dewan_pers_status!="1") { ?>
                                     <input type="file" name="sertifikat_dewan_pers" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->sertifikat_dewan_pers!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->sertifikat_dewan_pers?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->sertifikat_dewan_pers_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->sertifikat_dewan_pers_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->sertifikat_dewan_pers_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->sertifikat_dewan_pers_status=="9")  { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
                             <?php if(@$proposal->spt_tahun_terakhir_status=="1") { ?>
-                                class="bg-success"
+                                class="bg-secondary"
                                 <?php }else if(@$proposal->spt_tahun_terakhir_status=="0") { ?>
                                     class="bg-secondary"
-                                <?php }else { ?>
-                                    class="bg-danger"
+                                <?php }else if(@$proposal->spt_tahun_terakhir_status=="9") { ?>
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>SPT Tahun Terakhir (PDF *1MB)</th>
                                 <td>
+                                <?php if(@$proposal->spt_tahun_terakhir_status!="1") { ?>
                                     <input type="file" name="spt_tahun_terakhir" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->spt_tahun_terakhir!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->spt_tahun_terakhir?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->spt_tahun_terakhir_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->spt_tahun_terakhir_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->spt_tahun_terakhir_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->spt_tahun_terakhir_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
                                 </td>
                             </tr>
                             <tr
-                            <?php if(@$proposal->sertifikat_dewan_pers_status=="1") { ?>
-                                class="bg-success"
-                                <?php }else if(@$proposal->sertifikat_dewan_pers_status=="0") { ?>
+                            <?php if(@$proposal->surat_domisili_kantor_biro_status=="1") { ?>
+                                class="bg-secondary"
+                                <?php }else if(@$proposal->surat_domisili_kantor_biro_status=="0") { ?>
                                     class="bg-secondary"
                                 <?php }else { ?>
-                                    class="bg-danger"
+                                    class="bg-secondary"
                                 <?php }?>>
                                 <th>Surat Domisili Kantor Biro di Lampung Utara (PDF *1MB)</th>
                                 <td>
+                                <?php if(@$proposal->surat_domisili_kantor_biro_status!="1") { ?>
                                     <input type="file" name="surat_domisili_kantor_biro" accept=".pdf" class="form-control">
+                                    <?php }?>
                                     <?php if(@$proposal->surat_domisili_kantor_biro!="") { ?>
                                         <a target="_blank" class="btn btn-warning" href="<?=base_url()?>berkas/proposal/<?=@$proposal->surat_domisili_kantor_biro?>">Lihat Berkas</a>
                                     <?php }?>
                                 </td>
                                 <td>
-                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                    <textarea readonly="readonly" disabled="disabled" name="" id="" cols="30" rows="10" class="form-control"><?=@$proposal->surat_domisili_kantor_biro_ket?></textarea>
                                 </td>
                                 <td>
                                 <?php if(@$proposal->surat_domisili_kantor_biro_status=="1") { ?>
                                     <i class="fa fa-check text-success"></i>
                                     <?php }else if(@$proposal->surat_domisili_kantor_biro_status=="0") { ?>
                                         <i class="fa fa-minus"></i>
-                                    <?php }else { ?>
+                                    <?php }else if(@$proposal->surat_domisili_kantor_biro_status=="9") { ?>
                                         <i class="fa fa-remove text-danger"></i>
                                     <?php }?>
+                                </td>
+                            </tr>
+                            <tr>
+                            
+                                <td colspan="4">
+                                        <div class="form-group">
+                                        <div class="checkbox-inline">
+                                        <label><input type="checkbox" name="cheklist" required>Dengan ini SAYA menyatakan bahwa seluruh data yang di unggah diatas adalah BENAR dan bukan hasil REKAYASA dan SAYA bertanggung jawab penuh atas seluruh data yang SAYA unggah.</label>
+                                        </div>
+                                    </div>
                                 </td>
                             </tr>
                         </table>
@@ -516,9 +584,9 @@
 
 
                     <div class="form-group">
-                    <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
+                    <label for="" class="text text-danger">*Kelengkapan Berkas Bisa diubah sebelum status menjadi diterima</label> 
                     <?php  if(strtolower(@$proposal->status)!='diterima'){ ?>
-                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
+                       <!-- <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button> -->
                        <?php  }?>
                     </div>
            
@@ -541,22 +609,25 @@
                                 <?php }?>
                             </select>
                             <div class="form-group">
-                                <label for="">Upload Data (<?=$ck['keterangan']?>)</label>
+                                <label for="">Upload Data (PDF *2MB) (<?=$ck['keterangan']?>)</label>
                                 <input type="file" name="bukti[]" class="form-control">
                                 <?php if($ck['file']!=""){ ?>
                                 <a target="_blank" href="<?=base_url()?>berkas/proposal/<?=$ck['file']?>" class="text text-danger">Lihat Dokumen <?=$ck['nama_kriteria']?> yang sudah diupload</a>
                                 <?php }else { echo "Belum Upload bukti data ".$ck['nama_kriteria']; }?>
                             </div>
                         </div>
+                        
 
                     <?php }}?>
+                    <?php if(!empty($ceklis)){ if(strtolower(@$proposal->status_identitas)=='diterima'){ ?>
+                        <div class="form-group text-center col-md-6">
+                            <!-- <button type="submit" class="btn btn-primary"><span class="fa fa-save"></span> Kirim</button> -->
+                        </div>
+                       <?php }}?>
                     </div>
                     <div class="form-group col-md-12">
                         <label for="" class="text text-danger">*Bisa Di Isi setelah anda melakukan submit Identitas Media dan Kelengkapan Berkas</label><br>
                         <label for="" class="text text-danger">*Bisa diubah sebelum status menjadi diterima</label> 
-                        <?php if(!empty($ceklis)){ if(strtolower(@$proposal->status)!='diterima'){ ?>
-                       <button type="submit" class="btn btn-primary pull-right"><span class="fa fa-save"></span> Kirim</button>
-                       <?php }}?>
                     </div>
                     </form>
                 </div>
@@ -565,9 +636,11 @@
     </div>
     <div class="box-footer">
             <form action="">
-                <div class="form-group">
-                    <label for="">Status Saat ini Adalah : <?=strtoupper(@$proposal->status)?></label><br>
-                    <label for="">Keterangan : <?=strtoupper(@$proposal->keterangan)?></label>
+                <div class="form-group alert alert-info">
+                <?php if(@$proposal->status_identitas=="diterima"){ ?>
+                    <label for="">Status Kelengkapan Berkas :  <?php  echo (strtoupper($proposal->status)=="DITERIMA")?"Berkas & Persyaratan Lengkap":"Berkas & Persyaratan Tidak Lengkap/Terdapat Kesalahan";?></label><br>
+                    <label for="">Keterangan Kelengkapan Berkas :  <?php echo strtoupper(@$proposal->keterangan)?></label>
+                <?php }?>
                 </div>
             </form>
     </div>

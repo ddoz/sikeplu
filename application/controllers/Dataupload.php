@@ -125,6 +125,11 @@ class Dataupload extends CI_Controller {
         $id_proposal = $this->input->post('proposal_id');
         $id_order = $this->input->post('id_order');
         $this->db->trans_begin();
+
+        // print_r($this->input->post());
+        // print_r($_FILES);
+        // die();
+
         foreach ($this->input->post('formula_id') as $key => $val) {
             $insert = array(
                 'proposal_id' => $this->input->post('proposal_id'),
@@ -134,35 +139,38 @@ class Dataupload extends CI_Controller {
                 'updated_at' => date('Y-m-d H:i:s'),
                 'formula_id' => $val
             );
+
+
             if($this->checkiffile($val)->tipe == 'file') {
                 $config['upload_path']          = './berkas/buktitayang/';
                 $config['allowed_types']        = 'pdf|PDF';
                 $config['max_size']             = 5048; // 1MB
                 $config['encrypt_name']         = true;
                 $this->load->library('upload',$config);
-                $files = $_FILES;
-                $cpt = count($_FILES['value']['name']);
-                for($i=0; $i<$cpt; $i++)
-                {           
-                    $_FILES['value']['name']= $files['value']['name'][$i];
-                    $_FILES['value']['type']= $files['value']['type'][$i];
-                    $_FILES['value']['tmp_name']= $files['value']['tmp_name'][$i];
-                    $_FILES['value']['error']= $files['value']['error'][$i];
-                    $_FILES['value']['size']= $files['value']['size'][$i];    
+                // $cpt = count($_FILES['value']['name']);
+            
 
                     $this->upload->initialize($config);
-                    if($this->upload->do_upload('value')) {
-                        $insert['value'] = $this->upload->data()['file_name'];
+                    if($this->upload->do_upload('value'.$val)) {
+                        $insert['value'] = $this->upload->data('file_name');
                     }else {
-                        echo $this->upload->display_errors();die();
-                        $insert['value'] = 'noimage';
+                        $err = $this->upload->display_errors();
+                        $this->db->trans_rollback();
+                        $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Fail!</strong> Data gagal disimpan. '.$this->upload->display_errors().'
+                        </div>');
+                        // $insert['value'] = 'noimage';
+                        redirect(base_url().'dataupload/list/'.$id_proposal.'/'.$id_order);
+                        exit();
                     }
-                }
+                // }
                 
             }else {
-                $key = $key -1;
-                $insert['value'] = $this->input->post('value')[$key];
+                $insert['value'] = $this->input->post('value'.$val);
             }
+
+            // print($insert);
             $this->db->insert('bukti_tayangs', $insert);
         }
 

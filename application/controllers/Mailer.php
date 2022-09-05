@@ -20,12 +20,11 @@ class Mailer extends CI_Controller {
                 'mailtype'  => 'html',
                 'charset'   => 'utf-8',
                 'protocol'  => 'smtp',
-                'smtp_host' => 'smtp.gmail.com',
-                'smtp_user' => 'sikeplu.mailer@gmail.com',  // Email gmail
-                'smtp_pass'   => 'sikeplu@2021',  // Password gmail
-                'smtp_crypto' => 'ssl',
-                'smtp_port'   => 465,
-                'crlf'    => "\r\n",
+                'smtp_host' => 'mail.lampungutarakab.go.id',
+                'smtp_user' => 'sikeplu@lampungutarakab.go.id',  // Email gmail
+                'smtp_pass'   => 'sikeplu2022',  // Password gmail
+                'smtp_crypto' => 'tls',
+                'smtp_port'   => 587,
                 'newline' => "\r\n"
             ];
 
@@ -33,7 +32,7 @@ class Mailer extends CI_Controller {
             $this->load->library('email', $config);
 
             // Email dan nama pengirim
-            $this->email->from('no-reply@sikeplu.com', 'Sikeplu');
+            $this->email->from('sikeplu@lampungutarakab.go.id', 'Sikeplu');
 
             // Email penerima
             $this->email->to($user->email); // Ganti dengan email tujuan

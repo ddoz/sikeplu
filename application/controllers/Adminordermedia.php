@@ -45,7 +45,7 @@ class Adminordermedia extends CI_Controller {
 
 
       $data = array(
-          'script'    => 'script/js_pengajuan',
+          'script'    => 'script/js_ordermedia',
           'page'      => 'admin/createorder',
           'link'      => 'adminordermedia',
           'media'      => $media,
@@ -94,9 +94,10 @@ class Adminordermedia extends CI_Controller {
         </div>');
       }
     } else {
+      $errfile = $this->upload->display_errors();
       $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-          <strong>Fail!</strong> Gagal simpan data. Periksa File Surat Order.
+          <strong>Fail!</strong> Gagal simpan data. Periksa File Surat Order.'. $errfile.'
       </div>');
     }
 
@@ -124,7 +125,7 @@ public function buktitayang() {
     $this->db->update('order_media',array('status_order'=>'1'));
 
     $order = $this->db->get_where('order_media',array('id'=>$this->uri->segment(3)))->row();
-    print_r($order);
+    
     //get email
     $this->db->select("proposals.email_redaksi");
     $this->db->from("proposals");
@@ -135,23 +136,22 @@ public function buktitayang() {
     $this->db->db_debug = false;
 		// Konfigurasi email
         $config = [
-            'mailtype'  => 'html',
-            'charset'   => 'utf-8',
-            'protocol'  => 'smtp',
-            'smtp_host' => 'smtp.gmail.com',
-            'smtp_user' => 'sikeplu.mailer@gmail.com',  // Email gmail
-            'smtp_pass'   => 'sikeplu@2021',  // Password gmail
-            'smtp_crypto' => 'ssl',
-            'smtp_port'   => 465,
-            'crlf'    => "\r\n",
-            'newline' => "\r\n"
-        ];
+          'mailtype'  => 'html',
+          'charset'   => 'utf-8',
+          'protocol'  => 'smtp',
+          'smtp_host' => 'mail.lampungutarakab.go.id',
+          'smtp_user' => 'sikeplu@lampungutarakab.go.id',  // Email gmail
+          'smtp_pass'   => 'sikeplu2022',  // Password gmail
+          'smtp_crypto' => 'tls',
+          'smtp_port'   => 587,
+          'newline' => "\r\n"
+      ];
 
         // Load library email dan konfigurasinya
         $this->load->library('email', $config);
 
         // Email dan nama pengirim
-        $this->email->from('no-reply@sikeplu.com', 'Sikeplu');
+        $this->email->from('sikeplu@lampungutarakab.go.id', 'Sikeplu');
 
         // Email penerima
         $this->email->to($email); // Ganti dengan email tujuan

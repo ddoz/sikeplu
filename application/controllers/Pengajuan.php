@@ -104,6 +104,31 @@ class Pengajuan extends CI_Controller {
         redirect(base_url()."pengajuan");
     }
 
+    public function savekelengkapanberkas() {
+
+        //cek apakah sudah ada insert data
+        $ceking = $this->db->get_where('proposals',array("user_id"=>$this->session->userdata('userId')));
+        if($ceking->num_rows()>0) {
+            $update = $this->Model_upload->updatekelengkapan($ceking->row());
+            if($update['status']) {
+                $this->session->set_flashdata('status','<div class="alert alert-success alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Success!</strong> '.$update['message'].'.
+              </div>');
+            }else {
+                $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>Fail!</strong> '.$update['message'].'
+              </div>');
+            }
+
+        }else {
+           
+        }
+
+        redirect(base_url()."pengajuan");
+    }
+
     public function ceklis() {
 
         $insert = array(
@@ -111,7 +136,7 @@ class Pengajuan extends CI_Controller {
             "user_id" => $this->session->userdata("userId")
         );
         $config['upload_path']          = './berkas/proposal/';
-        $config['allowed_types']        = 'jpg|png|jpeg|pdf|PDF';
+        $config['allowed_types']        = 'pdf|PDF';
         $config['max_size']             = 2048; // 1MB
         $config['encrypt_name']         = true;
 
@@ -178,6 +203,7 @@ class Pengajuan extends CI_Controller {
             <strong>Success!</strong> Berhasil simpan data.
           </div>');
         }else {
+            $this->db->insert('logmail',array("log"=>$this->db->error()));
             $this->db->trans_rollback();
             $this->session->set_flashdata('status','<div class="alert alert-danger alert-dismissible">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
